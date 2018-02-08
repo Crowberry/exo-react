@@ -1,6 +1,6 @@
 import React from "react";
 
-class BodyComments extends React.Component {
+class MainComments extends React.Component {
   render() {
     return (
         <div className="content-comments">
@@ -10,4 +10,4 @@ class BodyComments extends React.Component {
   }
 }
 
-export default BodyComments;
+export default MainComments;

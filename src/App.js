@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderIssue from "./components/header-issue/header";
+import MainComments from "./components/main-comments/main"
 
-// import MainComments from "./components/body-comments/main"
 // import WithFetching from "./components/_functions/callApi";
 
 // const urlTest =
@@ -15,15 +15,11 @@ class App extends React.Component {
 
 
     render() {
-        // return <div>Hello world</div>;
-
-        return <HeaderIssue />;
-
-        // return [
-        //     // <CallApi />
-        //     // <HeaderIssue />,
-        //     // <MainComments />
-        // ]
+        
+        return [
+            <HeaderIssue key="head" />,
+            <MainComments key="body" />
+        ]
     }
 }
 

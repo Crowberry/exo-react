@@ -1,88 +1,43 @@
 import React from "react";
-// import axios from "axios";
-// import callApi from "../_functions/callApi";
+import callApi from "../_functions/callApi";
 
-// callApi()
-//     .then(responseData => {
-//         console.log('response received');
-//         console.log(responseData);
-//     });
-
-// const values = callApi()
-//     .then(responseData => {
-         
-//         console.log([responseData.user.id, responseData.title]);
-//     })
 
     
 
+class HeaderIssue extends React.Component {
 
+  state = { issue: {}, isLoading:true };
 
-  
-const API = "https://api.github.com/repos/stadline/js-technical-test/issues/2";
-
-class HeaderIssue extends React.Component {   
-
-
-// callApi(apiUrl) {
-
-//     if (!apiUrl) {
-//         apiUrl = API;
-//     }
-
-//     console.log('fetch ...');
-//     return fetch(apiUrl, { method: "get" })
-//       .then(response => response.json())
-
-// }
-
-    state = {id: ''} 
-
-    componentDidMount() {
-        // callApi().then(data => {
-        //   let val = data.map(val => {
-        //     return <a key={val.id}>{val.title}</a>;
-        //   })
-        //   this.setState({id : val})
-        // });
-
-        fetch(API, {
-          method: "get"
-        }).then(response => response.json())
-            .then(data => {
-                let val = Array.from(data).map(v => {
-                    return <a key={v.id}>{v.title}</a>;
-                })
-                this.setState({id : val})
-            })
-    }
+  componentWillMount() {
+    callApi()
+      .then(data => {
+        this.setState({ isLoading: false, issue: data });
+      });
+  }
 
   render() {
+    const { isLoading, 
+            issue: { 
+                title,
+                html_url,
+                number,
+                created_at
+            } 
+        } = this.state;
 
-    return (
-        <div>{this.state}</div>
-    )
+    return <header className="table">
+        <div className="table-cell-center">
+          <div className="container clearfix">
+            <h1 className="pull-left">
+              <a href={html_url} target="_blank">
+                {title} <span>{number}</span>
+              </a>
+            </h1>
 
-
-    // return 
-    //     <header>
-    //     <h1>
-    //       <a>
-            
-    //         {callApi()
-    //             .then(data =>{
-    //                 data.map((val) => {
-
-    //                     return
-    //                         {val.title}
-                        
-    //                 })
-    //             })}
-
-    //         {/* Titre de l'issue <span>#2</span> */}
-    //       </a>
-    //     </h1>
-    //   </header>;
+            <p className="pull-right">{created_at}</p>
+          </div>
+        </div>
+      </header>;
   }
 }
 

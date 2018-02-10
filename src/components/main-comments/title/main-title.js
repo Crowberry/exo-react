@@ -26,14 +26,13 @@ class TitleComments extends React.Component {
         <a href={issue.user.html_url} title={issue.user.login} className="avatar-user pull-left">
           <img alt={issue.user.login} src={issue.user.avatar_url} />
         </a>
-        <h2 className="pull-left">
-          Conversation with <a href={issue.user.html_url} target="_blank">
-            {issue.user.login} <i className="fas fa-external-link-alt ico" />
-          </a>
-        </h2>
-
-        <div key={issue.user.id} className="authorIssue pull-left clears">
-          <p className="pull-left">{issue.body}</p>
+        <div className="pull-left">
+          <h2>
+            Conversation with <a href={issue.user.html_url} target="_blank">
+              {issue.user.login} <i className="fas fa-external-link-alt ico" />
+            </a>
+          </h2>
+            <p key={issue.user.id}>{issue.body}</p>
         </div>
       </div> : null;
   }

@@ -49,7 +49,7 @@ class MainThread extends React.Component {
                                     <img alt={comment.user.login} src={comment.user.avatar_url}/>
                                     
                                 </a>
-                                <p class='pull-right'>{comment.body}</p>
+                                <p className='pull-right'>{comment.body}</p>
                                 
                         </div>
                     )

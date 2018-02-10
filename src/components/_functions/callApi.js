@@ -1,4 +1,4 @@
-const API = "https://api.github.com/repos/stadline/js-technical-test/issues/2";
+const API = "https://api.github.com/repos/nodejs/node/issues/6867";
 
 function callApi(apiUrl) {
 

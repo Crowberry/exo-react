@@ -8,16 +8,19 @@ class MainThread extends React.Component {
     state = {isLoading:true,isLoading1:true, commentsData: [] , issue:{ user:{}}};
 
         componentWillMount() {
-            callApi('https://api.github.com/repos/stadline/js-technical-test/issues/2/comments')
+
+            callApi(' https://api.github.com/repos/nodejs/node/issues/6867/comments')
                 .then(data => {
                     this.setState({ isLoading: false, commentsData:data });
                     // console.log(data)
                 });
 
-            callApi('https://api.github.com/repos/stadline/js-technical-test/issues/2').then(data => {
-                this.setState({issue:data,isLoading1: false})
+            callApi("https://api.github.com/repos/nodejs/node/issues/6867").then(
+              data => {
+                this.setState({ issue: data, isLoading1: false });
                 // console.log(data)
-            });
+              }
+            );
         }
     
 

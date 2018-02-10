@@ -7,10 +7,13 @@ class MainComments extends React.Component {
     return <section className="main clearfix">
         <div className="settings-panel pull-left" />
         <div className="content-comments pull-left">
-          <div className="issue-body" />
-          <div className="list-comments">
-            <TitleComments />
-            <MainThread />
+          <div className="container">
+            <div className="issue-body list-comments clearfix">
+              <TitleComments />
+            </div>
+            <div className="list-comments clearfix">
+              <MainThread />
+            </div>
           </div>
         </div>
       </section>;

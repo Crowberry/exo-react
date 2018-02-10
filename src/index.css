@@ -64,6 +64,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: #6c7680;
 }
 
 .clearfix:after {
@@ -117,20 +118,44 @@ header a:hover {
   text-decoration: underline;
 }
 
+.main {
+   background: #fafafa;
+}
+
 .main > div {
   min-height: calc(100vh - 80px);
 }
 
 .settings-panel {
   width: 33.333333%;
-  background: #fafafa;
 }
 
 .content-comments {
   width: 66.666667%;
   background: #f0f3f5;
   border-left: 1px solid rgb(209, 220, 228);
-  padding: 20px 30px;
+  padding: 30px;
+  margin: 0;
+}
+
+.issue-body h2{
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.issue-body h2 a {
+  color: #40464d;
+  text-decoration: none;
+}
+
+.issue-body h2 a:hover,
+.issue-body h2 a:active,
+.issue-body h2 a:focus {
+  text-decoration: underline;
+}
+
+.issue-body h2 a .ico {
+  font-size: 12px;
 }
 
 .avatar-user {
@@ -139,7 +164,13 @@ header a:hover {
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  margin: 0 10px;
+}
+
+.pull-left .avatar-user {
+  margin-right: 15px;
+}
+.pull-right .avatar-user {
+  margin-left: 15px;
 }
 
 .avatar-user img {

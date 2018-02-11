@@ -30,7 +30,7 @@ class HeaderIssue extends React.Component {
           <div className="container clearfix">
             <h1 className="pull-left">
               <a href={html_url} target="_blank">
-                {title} <span>{number}</span>
+                {title} <span>#{number}</span> <i className="fas fa-external-link-alt ico" />
               </a>
             </h1>
 

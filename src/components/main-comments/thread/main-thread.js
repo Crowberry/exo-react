@@ -2,20 +2,19 @@ import React from "react";
 import callApi from "../../_functions/callApi";
 import Markdown from "../../Markdown";
 
-
 class MainThread extends React.Component {
 
     state = {isLoading:true,isLoading1:true, commentsData: [] , issue:{ user:{}}};
 
         componentWillMount() {
 
-            callApi(' https://api.github.com/repos/nodejs/node/issues/6867/comments')
+            callApi(' https://api.github.com/repos/stadline/js-technical-test/issues/2/comments')
                 .then(data => {
                     this.setState({ isLoading: false, commentsData:data });
                     // console.log(data)
                 });
 
-            callApi("https://api.github.com/repos/nodejs/node/issues/6867").then(
+            callApi("https://api.github.com/repos/stadline/js-technical-test/issues/2").then(
               data => {
                 this.setState({ issue: data, isLoading1: false });
                 // console.log(data)
@@ -38,9 +37,7 @@ class MainThread extends React.Component {
                                         <img alt={comment.user.login} src={comment.user.avatar_url}/>
                                         
                                 </a>
-                                <p className='pull-left'>
-                                    {comment.body}
-                                </p>
+                                <Markdown className='pull-left comment' >{comment.body}</Markdown>              
                         </div>
                         
                         :
@@ -49,8 +46,7 @@ class MainThread extends React.Component {
                                     <img alt={comment.user.login} src={comment.user.avatar_url}/>
                                     
                                 </a>
-                                <p className='pull-right'>{comment.body}</p>
-                                
+                                <Markdown className='pull-right comment' >{comment.body}</Markdown>   
                         </div>
                     )
             }

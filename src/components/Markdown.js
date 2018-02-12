@@ -4,11 +4,10 @@ import {markdown} from 'markdown';
 
 
 class Markdown extends React.Component {
-    state  = {element:""}
     render(){
-        const {element} =this.state;
+        const { children, ...props } = this.props;
         return (
-            <div dangerouslySetInnerHTML={{__html: markdown.toHTML(element)}}></div>
+            <div dangerouslySetInnerHTML={{__html: markdown.toHTML(children)}} {...props}></div>
         )
     }
 }

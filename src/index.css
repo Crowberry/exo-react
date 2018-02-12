@@ -195,7 +195,7 @@ header a:hover {
   margin-bottom: 30px;
 }
 
-.list-comments div p{
+.list-comments div .comment{
   min-height: 50px;
   border-radius: 10px;
   background: #f5fcff;
@@ -204,7 +204,7 @@ header a:hover {
 }
 
 
-.list-comments .commentsOther p {
+.list-comments .commentsOther .comment {
   background: white;
 
 }

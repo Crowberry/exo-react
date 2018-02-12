@@ -5,7 +5,6 @@ export default class UrlInput extends React.Component {
   static propTypes = {
     callBackFromParent: PropTypes.func.isRequired,
   }
-
   state = { urlGit: '' }
 
   handleSubmit = (event) => {

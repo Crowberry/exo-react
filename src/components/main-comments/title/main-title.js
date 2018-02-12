@@ -1,5 +1,6 @@
 import React from "react";
 import callApi from "../../_functions/callApi";
+import Markdown from "../../Markdown";
 
 class TitleComments extends React.Component {
     state = {
@@ -8,12 +9,13 @@ class TitleComments extends React.Component {
     }
 
     componentWillMount() {
-        callApi()
+        callApi("https://api.github.com/repos/stadline/js-technical-test/issues/2")
             .then(data => {
                 this.setState({
                     issue: data,
                     isLoaded: true
                 })
+                console.log(data)
             }
         )
     }
@@ -32,9 +34,12 @@ class TitleComments extends React.Component {
               {issue.user.login} <i className="fas fa-external-link-alt ico" />
             </a>
           </h2>
-            <p key={issue.user.id}>{issue.body}</p>
+          
+          <Markdown className="comment">{issue.body}</Markdown>
+
         </div>
-      </div> : null;
+      </div> 
+      : null;
   }
 }
 

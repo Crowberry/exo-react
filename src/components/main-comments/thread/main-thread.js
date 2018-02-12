@@ -1,23 +1,23 @@
-import React from "react";
-import callApi from "../../_functions/callApi";
-import Markdown from "../../Markdown";
+import React from 'react';
+import callApi from '../../_functions/callApi';
+import Markdown from '../../Markdown';
 
 class MainThread extends React.Component {
   state = {
     isLoading: true,
     isLoading1: true,
     commentsData: [],
-    issue: { user: {} }
+    issue: { user: {} },
   };
 
   componentWillMount() {
-    callApi(this.props.urlApiParent).then(data => {
+    callApi(this.props.urlApiParent).then((data) => {
       this.setState({ issue: data, isLoading1: false });
 
-      callApi(data.comments_url).then(dataComments => {
+      callApi(data.comments_url).then((dataComments) => {
         this.setState({
           isLoading: false,
-          commentsData: dataComments
+          commentsData: dataComments,
         });
       });
     });
@@ -25,16 +25,16 @@ class MainThread extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.urlApiParent !== nextProps.urlApiParent) {
-        callApi(nextProps.urlApiParent).then(data => {
-          this.setState({ issue: data, isLoading1: false });
+      callApi(nextProps.urlApiParent).then((data) => {
+        this.setState({ issue: data, isLoading1: false });
 
-          callApi(data.comments_url).then(dataComments => {
-            this.setState({
-              isLoading: false,
-              commentsData: dataComments
-            });
+        callApi(data.comments_url).then((dataComments) => {
+          this.setState({
+            isLoading: false,
+            commentsData: dataComments,
           });
         });
+      });
     }
   }
 
@@ -43,16 +43,15 @@ class MainThread extends React.Component {
       isLoading,
       isLoading1,
       commentsData,
-      issue: { user: { id: authorIssue } }
+      issue: { user: { id: authorIssue } },
     } = this.state;
 
     return (
       <div className="list-comments">
         {isLoading && isLoading1
-          ? "notLoaded"
-          : commentsData.map(
-              comment =>
-                comment.user.id === authorIssue ? (
+          ? 'notLoaded'
+          : commentsData.map(comment =>
+                (comment.user.id === authorIssue ? (
                   <div
                     key={comment.id}
                     className="clearfix authorIssue pull-left clear"
@@ -90,8 +89,7 @@ class MainThread extends React.Component {
                       {comment.body}
                     </Markdown>
                   </div>
-                )
-            )}
+                )))}
       </div>
     );
   }

@@ -242,6 +242,8 @@ header h1 a:active .ico {
   background: #f5fcff;
   max-width: 560px;
   padding: 20px;
+  line-height: 1.3333;
+  word-wrap: break-word;
 }
 
 .comment p {

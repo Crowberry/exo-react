@@ -1,38 +1,39 @@
-import React from "react";
-import callApi from "../../_functions/callApi";
-import Markdown from "../../Markdown";
+import React from 'react';
+import callApi from '../../_functions/callApi';
+import Markdown from '../../Markdown';
 
 class TitleComments extends React.Component {
     state = {
-        issue: undefined,
-        isLoaded: false
+      issue: undefined,
+      isLoaded: false,
     }
 
     componentWillMount() {
-        callApi(this.props.urlApiParent)
-            .then(data => {
-                this.setState({
-                    issue: data,
-                    isLoaded: true
-                })
-            }
-        )
+      callApi(this.props.urlApiParent)
+        .then((data) => {
+          this.setState({
+            issue: data,
+            isLoaded: true,
+          });
+        });
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.urlApiParent !== nextProps.urlApiParent) { 
-            callApi(nextProps.urlApiParent).then(data => {
-              this.setState({ issue: data, isLoaded: true });
-            });
-        }
+      if (this.props.urlApiParent !== nextProps.urlApiParent) {
+        callApi(nextProps.urlApiParent).then((data) => {
+          this.setState({
+            issue: data,
+            isLoaded: true,
+          });
+        });
+      }
     }
-    
 
-    
-  render() {
-    const {issue, isLoaded} = this.state;
 
-    return isLoaded ? <div className="clearfix">
+    render() {
+      const { issue, isLoaded } = this.state;
+
+      return isLoaded ? <div className="clearfix">
         <a href={issue.user.html_url} title={issue.user.login} className="avatar-user pull-left">
           <img alt={issue.user.login} src={issue.user.avatar_url} />
         </a>
@@ -40,15 +41,15 @@ class TitleComments extends React.Component {
           <h2>
             Conversation with <a href={issue.user.html_url} target="_blank">
               {issue.user.login} <i className="fas fa-external-link-alt ico" />
-            </a>
+                              </a>
           </h2>
-          
+
           <Markdown className="comment">{issue.body}</Markdown>
 
         </div>
-      </div> 
-      : null;
-  }
+                        </div>
+        : null;
+    }
 }
 
 export default TitleComments;

@@ -4,13 +4,10 @@ import './index.css';
 import App from './App';
 
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
-
-
-/*// TODO
+/* // TODO
 
 ///// ------------------ GLOBAL
 
@@ -24,7 +21,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
     fonction api call pour récupérer les données
     prend en argument l'url de l'api:
-    soit celle de l'issue, soit celle des ses commentaires 
+    soit celle de l'issue, soit celle des ses commentaires
     (cette deuxième est obtenue par l'appel de la première)
 
     données qui nous intéressent:
@@ -49,14 +46,13 @@ ReactDOM.render(<App />, document.getElementById('root'));
             response.data[i].body
             response.data[i].author_association
             response.data[i].created_at
-            
-            response.data[i].user.id 
+
+            response.data[i].user.id
             response.data[i].user.login
             response.data[i].user.avatar_url
             response.data[i].user.html_url
 
 
-    
     // concernant l'user, doit pouvoir dire s'il est l'auteur de l'issue ou non (comparaison par id)
 
 
@@ -74,7 +70,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
     header
         titre (lien)
             1 id (key)                  .user.id
-            nom de l'issue              .title   
+            nom de l'issue              .title
             url issue github            .html_url
             numero de l'issue           .number
 
@@ -83,7 +79,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
         (2eme wave) Input qui reçoit nouvel url
 
     main
-        title 
+        title
             "Conversation with" +
             auteur (lien)
                 1 id (key)                  .user.id
@@ -100,7 +96,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
                         1 id (key)                  .user.id
                         img avatar (src)            .user.avatar_url
                         url page github             .html_url
-                    
+
                     body                            .body
 
                     /////////////////////////////// ici on fait référence à l'api des commentaires
@@ -119,7 +115,6 @@ ReactDOM.render(<App />, document.getElementById('root'));
                     Contenu
                         texte commentaire           .body
                         date creation               .created_at
-
 
 
 */

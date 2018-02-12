@@ -7,21 +7,23 @@ class MainThread extends React.Component {
 
     state = {isLoading:true,isLoading1:true, commentsData: [] , issue:{ user:{}}};
 
-        componentWillMount() {
+    
+    componentWillMount() {
+        console.log(this.props.urlApiParentBis);
 
-            callApi(' https://api.github.com/repos/nodejs/node/issues/6867/comments')
-                .then(data => {
-                    this.setState({ isLoading: false, commentsData:data });
-                    // console.log(data)
+        callApi(this.props.urlApiParent2).then(
+            data => {
+              this.setState({ issue: data, isLoading1: false });
+
+              callApi(data.comments_url).then(dataComments => {
+                this.setState({
+                  isLoading: false,
+                  commentsData: dataComments
                 });
-
-            callApi("https://api.github.com/repos/nodejs/node/issues/6867").then(
-              data => {
-                this.setState({ issue: data, isLoading1: false });
-                // console.log(data)
-              }
-            );
-        }
+              });
+            }
+        )
+    }
     
 
   render() {

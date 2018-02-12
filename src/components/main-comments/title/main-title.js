@@ -8,7 +8,7 @@ class TitleComments extends React.Component {
     }
 
     componentWillMount() {
-        callApi()
+        callApi(this.props.urlApiParent2)
             .then(data => {
                 this.setState({
                     issue: data,

@@ -2,7 +2,6 @@ import React from "react";
 import callApi from "../../_functions/callApi";
 import Markdown from "../../Markdown";
 
-
 class MainThread extends React.Component {
 
     state = {isLoading:true,isLoading1:true, commentsData: [] , issue:{ user:{}}};
@@ -10,6 +9,7 @@ class MainThread extends React.Component {
     
     componentWillMount() {
         console.log(this.props.urlApiParentBis);
+
 
         callApi(this.props.urlApiParent2).then(
             data => {
@@ -24,6 +24,7 @@ class MainThread extends React.Component {
             }
         )
     }
+
     
 
   render() {
@@ -40,9 +41,7 @@ class MainThread extends React.Component {
                                         <img alt={comment.user.login} src={comment.user.avatar_url}/>
                                         
                                 </a>
-                                <p className='pull-left'>
-                                    {comment.body}
-                                </p>
+                                <Markdown className='pull-left comment' >{comment.body}</Markdown>              
                         </div>
                         
                         :
@@ -51,8 +50,7 @@ class MainThread extends React.Component {
                                     <img alt={comment.user.login} src={comment.user.avatar_url}/>
                                     
                                 </a>
-                                <p className='pull-right'>{comment.body}</p>
-                                
+                                <Markdown className='pull-right comment' >{comment.body}</Markdown>   
                         </div>
                     )
             }

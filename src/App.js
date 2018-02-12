@@ -2,24 +2,19 @@ import React from "react";
 import HeaderIssue from "./components/header-issue/header";
 import MainComments from "./components/main-comments/main"
 
-// import WithFetching from "./components/_functions/callApi";
-
-// const urlTest =
-//   "https://api.github.com/repos/stadline/js-technical-test/issues/2/comments";
-
-// withFetching(urlest);
 
 class App extends React.Component {
-
     
-
-
     render() {
         
+        const urlApi = "https://api.github.com/repos/nodejs/node/issues/6867";
+        
         return [
-            <HeaderIssue key="head" />,
-            <MainComments key="body" />
-        ]
+            <header key="head" className="table">
+                <HeaderIssue urlApiParent={urlApi} />
+            </header>, 
+            <MainComments key="body" urlApiParent={urlApi} />
+        ];
     }
 }
 

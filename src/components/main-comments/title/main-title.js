@@ -9,7 +9,7 @@ class TitleComments extends React.Component {
     }
 
     componentWillMount() {
-        callApi("https://api.github.com/repos/stadline/js-technical-test/issues/2")
+        callApi(this.props.urlApiParent2)
             .then(data => {
                 this.setState({
                     issue: data,

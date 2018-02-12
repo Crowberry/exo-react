@@ -9,15 +9,15 @@ class MainComments extends React.Component {
 
     return <section className="main clearfix">
         <div className="settings-panel pull-left">
-          <SettingsMain />
+          <SettingsMain callBackFromParent={this.props.callBackFromParent} />
         </div>
         <div className="content-comments pull-left">
           <div className="container">
             <div className="issue-body list-comments clearfix">
-              <TitleComments urlApiParent2={this.props.urlApiParent} />
+              <TitleComments urlApiParent={this.props.urlApiParent} />
             </div>
             <div className="list-comments clearfix">
-              <MainThread urlApiParent2={this.props.urlApiParent} />
+              <MainThread urlApiParent={this.props.urlApiParent} />
             </div>
           </div>
         </div>

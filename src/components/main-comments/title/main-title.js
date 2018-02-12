@@ -9,16 +9,24 @@ class TitleComments extends React.Component {
     }
 
     componentWillMount() {
-        callApi(this.props.urlApiParent2)
+        callApi(this.props.urlApiParent)
             .then(data => {
                 this.setState({
                     issue: data,
                     isLoaded: true
                 })
-                console.log(data)
             }
         )
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.urlApiParent !== nextProps.urlApiParent) { 
+            callApi(nextProps.urlApiParent).then(data => {
+              this.setState({ issue: data, isLoaded: true });
+            });
+        }
+    }
+    
 
     
   render() {

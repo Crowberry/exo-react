@@ -2,20 +2,23 @@ import React from "react";
 
 export default class UrlInput extends React.Component {
 
-  state = {urlGit: "https://api.github.com/repos/nodejs/node/issues/6867"}
-  // handleInput = () => {
+  state = {urlGit: ""}
 
-  // }
 
   handleSubmit = event => {
-    let urlGit = this.inputUrl.value;
-    console.log(urlGit)
-    urlGit = urlGit.replace(/github.com/, "api.github.com/repos");
     event.preventDefault()
-    console.log({target: event.target})
-    console.log(urlGit)
+    let url = this.state.urlGit;
+    
+    url = url.replace(/github.com/, "api.github.com/repos");
 
-    this.setState({urlGit: urlGit})
+    this.props.callBackFromParent(url);
+
+  }
+
+  handleChange = event => {
+    this.setState({
+      urlGit: event.target.value
+    })
   }
 
   render() {
@@ -27,7 +30,8 @@ export default class UrlInput extends React.Component {
         <label>Changer URL</label>
         <input 
           type="text"
-          ref={node => this.inputUrl = node} 
+          onChange={this.handleChange}
+          value={this.state.urlGit}
         />
         <button type="submit">Rechercher</button>
         <p>New url: {urlGit}</p>

@@ -104,6 +104,7 @@ header {
   background: rgb(48, 59, 68);
   color: rgb(215, 226, 234);
   height: 80px;
+  padding: 0 15px;
 }
 
 header h1 {
@@ -240,7 +241,15 @@ header h1 a:active .ico {
   border-radius: 10px;
   background: #f5fcff;
   max-width: 560px;
-  padding: 10px 15px;
+  padding: 20px;
+}
+
+.comment p {
+  margin-bottom: 10px;
+}
+
+.comment p:last-child {
+  margin-bottom: 0;
 }
 
 

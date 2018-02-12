@@ -9,7 +9,7 @@ export default class SettingsMain extends React.Component {
     return (
         <div className="container">
             <h2>Settings</h2>
-            <UrlInput />
+            <UrlInput callBackFromParent={this.props.callBackFromParent} />
         
         </div>
     );

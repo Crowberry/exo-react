@@ -13,14 +13,23 @@ class HeaderIssue extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.urlApiParent !== nextProps.urlApiParent ) {
+      callApi(nextProps.urlApiParent).then(data => {
+        this.setState({ isLoading: false, issue: data });
+      });
+    }
+  }
+
+  
+
   render() {
     const { isLoading, issue: { title, html_url, number, created_at } } = this.state;
 
     return ( isLoading ? 
                 null
                 :
-                <div className="table-cell-center">
-                  <div className="container clearfix">
+                <div className="table-cell-center clearfix">
                     <h1 className="pull-left">
                       <a href={html_url} target="_blank">
                         {title} <span>#{number}</span>{" "}
@@ -29,7 +38,6 @@ class HeaderIssue extends React.Component {
                     </h1>
 
                     <p className="pull-right">{created_at}</p>
-                  </div>
                 </div>
     );
   }

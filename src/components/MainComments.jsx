@@ -5,11 +5,11 @@ import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
 
 const MainComments = ({
-  comments, issue, callBackFromParent,
+  comments, issue, getNewUrl,
 }) => (
   <section className="main clearfix">
     <div className="settings-panel pull-left">
-      <SettingsMain callBackFromParent={callBackFromParent} />
+      <SettingsMain getNewUrl={getNewUrl} />
     </div>
     <div className="content-comments pull-left">
       <div className="container">
@@ -27,7 +27,7 @@ const MainComments = ({
 MainComments.propTypes = {
   comments: PropTypes.shape({}).isRequired,
   issue: PropTypes.shape({}).isRequired,
-  callBackFromParent: PropTypes.func.isRequired,
+  getNewUrl: PropTypes.func.isRequired,
 };
 
 

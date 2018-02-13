@@ -214,10 +214,10 @@ header h1 a:active .ico {
   opacity: 1;
 }
 
-.pull-left .avatar-user {
+.pull-left > .avatar-user, .avatar-user.pull-left  {
   margin-right: 15px;
 }
-.pull-right .avatar-user {
+.pull-right > .avatar-user {
   margin-left: 15px;
 }
 

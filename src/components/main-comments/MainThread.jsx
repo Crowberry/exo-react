@@ -50,21 +50,21 @@ const MainThread = ({ issue, comments }) => (
 MainThread.propTypes = {
   comments: PropTypes.shape({
     id: PropTypes.number,
-    user: {
+    user: PropTypes.shape({
       id: PropTypes.number,
       html_url: PropTypes.string,
       login: PropTypes.string,
       avatar_url: PropTypes.string,
-    },
+    }),
   }).isRequired,
   issue: PropTypes.shape({
     body: PropTypes.string,
-    user: {
+    user: PropTypes.shape({
       id: PropTypes.number,
       html_url: PropTypes.string,
       login: PropTypes.string,
       avatar_url: PropTypes.string,
-    },
+    }),
   }).isRequired,
 };
 

@@ -46,8 +46,8 @@ class App extends React.Component {
     }
   }
 
-  myCallback = (dataFromChild) => {
-    this.setState({ urlApi: dataFromChild, isLoading: true });
+  getNewUrl = (dataFromUrlInput) => {
+    this.setState({ urlApi: dataFromUrlInput, isLoading: true });
   };
 
   render() {
@@ -61,7 +61,7 @@ class App extends React.Component {
           key="body"
           issue={issue}
           comments={comments}
-          callBackFromParent={this.myCallback}
+          getNewUrl={this.getNewUrl}
         />,
       ];
   }

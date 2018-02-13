@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UrlInput from './settings/UrlInput';
 
-const SettingsMain = ({ callBackFromParent }) => (
+const SettingsMain = ({ getNewUrl }) => (
   <div className="container">
     <h2>Settings</h2>
-    <UrlInput callBackFromParent={callBackFromParent} />
+    <UrlInput getNewUrl={getNewUrl} />
   </div>
 );
 
 SettingsMain.propTypes = {
-  callBackFromParent: PropTypes.func.isRequired,
+  getNewUrl: PropTypes.func.isRequired,
 };
 
 

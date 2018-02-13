@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class UrlInput extends React.Component {
   static propTypes = {
-    callBackFromParent: PropTypes.func.isRequired,
+    getNewUrl: PropTypes.func.isRequired,
   }
   state = {
     urlGit: '',
@@ -14,7 +14,7 @@ export default class UrlInput extends React.Component {
     let url = this.state.urlGit;
     url = url.replace(/github.com/, 'api.github.com/repos');
 
-    this.props.callBackFromParent(url);
+    this.props.getNewUrl(url);
   }
 
   handleChange = (event) => {
@@ -29,11 +29,11 @@ export default class UrlInput extends React.Component {
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="changeUrl">Changer URL</label>
+        <label htmlFor="urlInput">Changer URL</label>
         <input
           type="text"
           onChange={this.handleChange}
-          value={this.state.urlGit}
+          value={urlGit}
         />
         <button type="submit">Rechercher</button>
         <p>New url: {urlGit}</p>

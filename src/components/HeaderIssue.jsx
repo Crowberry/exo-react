@@ -1,0 +1,29 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const HeaderIssue = ({ issue }) => (
+  <header className="table">
+    <div className="table-cell-center clearfix">
+      <h1 className="pull-left">
+        <a href={issue.html_url} target="_blank">
+          {issue.title} <span>#{issue.number}</span>{' '}
+          <i className="fas fa-external-link-alt ico" />
+        </a>
+      </h1>
+
+      <p className="pull-right">{issue.created_at}</p>
+    </div>
+  </header>
+);
+
+HeaderIssue.propTypes = {
+  issue: PropTypes.shape({
+    html_url: PropTypes.string,
+    title: PropTypes.string,
+    number: PropTypes.number,
+    created_at: PropTypes.string,
+  }).isRequired,
+};
+
+
+export default HeaderIssue;

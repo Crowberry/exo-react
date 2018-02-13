@@ -214,10 +214,10 @@ header h1 a:active .ico {
   opacity: 1;
 }
 
-.pull-left .avatar-user {
+.pull-left > .avatar-user, .avatar-user.pull-left  {
   margin-right: 15px;
 }
-.pull-right .avatar-user {
+.pull-right > .avatar-user {
   margin-left: 15px;
 }
 
@@ -242,6 +242,8 @@ header h1 a:active .ico {
   background: #f5fcff;
   max-width: 560px;
   padding: 20px;
+  line-height: 1.3333;
+  word-wrap: break-word;
 }
 
 .comment p {

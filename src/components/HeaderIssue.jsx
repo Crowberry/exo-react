@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const HeaderIssue = ({ issue }) => (
-
-  <div className="table-cell-center">
-    <div className="container clearfix">
+  <header className="table">
+    <div className="table-cell-center clearfix">
       <h1 className="pull-left">
         <a href={issue.html_url} target="_blank">
           {issue.title} <span>#{issue.number}</span>{' '}
@@ -14,8 +13,7 @@ const HeaderIssue = ({ issue }) => (
 
       <p className="pull-right">{issue.created_at}</p>
     </div>
-  </div>
-
+  </header>
 );
 
 HeaderIssue.propTypes = {

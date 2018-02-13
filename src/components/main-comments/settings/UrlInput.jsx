@@ -5,12 +5,13 @@ export default class UrlInput extends React.Component {
   static propTypes = {
     callBackFromParent: PropTypes.func.isRequired,
   }
-  state = { urlGit: '' }
+  state = {
+    urlGit: '',
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
     let url = this.state.urlGit;
-
     url = url.replace(/github.com/, 'api.github.com/repos');
 
     this.props.callBackFromParent(url);
@@ -28,7 +29,7 @@ export default class UrlInput extends React.Component {
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <label>Changer URL</label>
+        <label htmlFor="changeUrl">Changer URL</label>
         <input
           type="text"
           onChange={this.handleChange}

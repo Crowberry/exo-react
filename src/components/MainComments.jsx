@@ -25,8 +25,8 @@ const MainComments = ({
 );
 
 MainComments.propTypes = {
-  comments: PropTypes.shape({}).isRequired,
-  issue: PropTypes.shape({}).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   getNewUrl: PropTypes.func.isRequired,
 };
 

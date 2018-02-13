@@ -47,24 +47,27 @@ const MainThread = ({ issue, comments }) => (
   </div>
 );
 
+const shapeComUser = PropTypes.shape({
+  id: PropTypes.number,
+  html_url: PropTypes.string,
+  login: PropTypes.string,
+  avatar_url: PropTypes.string,
+});
+
+const shapeIssueUser = PropTypes.shape({
+  id: PropTypes.number,
+  html_url: PropTypes.string,
+  login: PropTypes.string,
+  avatar_url: PropTypes.string,
+});
+
 MainThread.propTypes = {
-  comments: PropTypes.shape({
+  comments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      html_url: PropTypes.string,
-      login: PropTypes.string,
-      avatar_url: PropTypes.string,
-    }),
-  }).isRequired,
+    user: shapeComUser.isRequired,
+  })).isRequired,
   issue: PropTypes.shape({
-    body: PropTypes.string,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      html_url: PropTypes.string,
-      login: PropTypes.string,
-      avatar_url: PropTypes.string,
-    }),
+    user: shapeIssueUser.isRequired,
   }).isRequired,
 };
 

@@ -41,6 +41,7 @@ export default class UrlInput extends React.Component {
         <p>
           <button
             type="submit"
+            className="btn btn-principal"
             disabled={Boolean(this.props.isLoading)}
           >
             Rechercher

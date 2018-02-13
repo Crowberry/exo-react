@@ -9,10 +9,12 @@ const MainComments = ({
 }) => (
   <section className="main clearfix">
     <div className="settings-panel pull-left">
-      <SettingsMain getNewUrl={getNewUrl} isLoading={isLoading} />
+      <div className="container-settings">
+        <SettingsMain getNewUrl={getNewUrl} isLoading={isLoading} />
+      </div>
     </div>
     <div className="content-comments pull-left">
-      <div className="container">
+      <div className="container-thread">
         <div className="issue-body list-comments clearfix">
           <TitleComments issue={issue} isLoading={isLoading} />
         </div>

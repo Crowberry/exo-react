@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import UrlInput from './settings/UrlInput';
 
 const SettingsMain = ({ getNewUrl, isLoading }) => (
-  <div className="container">
-    <UrlInput getNewUrl={getNewUrl} isLoading={isLoading} />
-  </div>
+  <UrlInput getNewUrl={getNewUrl} isLoading={isLoading} />
 );
 
 SettingsMain.propTypes = {

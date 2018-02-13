@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UrlInput from './settings/UrlInput';
 
-const SettingsMain = ({ getNewUrl }) => (
+const SettingsMain = ({ getNewUrl, isLoading }) => (
   <div className="container">
-    <h2>Settings</h2>
-    <UrlInput getNewUrl={getNewUrl} />
+    <UrlInput getNewUrl={getNewUrl} isLoading={isLoading} />
   </div>
 );
 
 SettingsMain.propTypes = {
   getNewUrl: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 

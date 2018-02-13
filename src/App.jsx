@@ -40,17 +40,33 @@ class App extends React.Component {
   render() {
     const { issue, comments, isLoading } = this.state;
 
-    return isLoading
-      ? 'wait'
-      : [
-        <HeaderIssue key="head" issue={issue} />,
+    return (
+
+      <div className="container-app">
+        <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
         <MainComments
           key="body"
           issue={issue}
           comments={comments}
           getNewUrl={this.getNewUrl}
-        />,
-      ];
+          isLoading={isLoading}
+        />
+      </div>
+
+
+    );
+
+    // return isLoading
+    //   ? 'wait'
+    //   : [
+    //     <HeaderIssue key="head" issue={issue} />,
+    //     <MainComments
+    //       key="body"
+    //       issue={issue}
+    //       comments={comments}
+    //       getNewUrl={this.getNewUrl}
+    //     />,
+    //   ];
   }
 }
 

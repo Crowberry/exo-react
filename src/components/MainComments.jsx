@@ -5,37 +5,28 @@ import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
 
 class MainComments extends React.Component {
-  static propTypes = {
-    issue: PropTypes.arrayOf(PropTypes.object).isRequired,
-    comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-    arrayUser: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }
-
   state = {
     userChecked: [],
-    issue: this.props.issue,
-    comments: this.props.comments,
-    arrayUser: this.props.arrayUser,
-
+    arrayUser: [],
   }
 
-  checkUser = (dataFromCheck) => {
-    this.setState({
-      userChecked: dataFromCheck,
-    });
-  }
+  // checkUser = (dataFromCheck) => {
+  //   this.setState({
+  //     userChecked: dataFromCheck,
+  //   });
+  // }
 
   render() {
+    const {
+      userChecked,
+    } = this.state;
     const {
       comments,
       issue,
       getNewUrl,
       isLoading,
-      arrayUser,
-      userChecked,
-    } = this.state;
+    } = this.props;
 
-    console.log('inmain ', userChecked);
     return (
       <section className="main clearfix">
         <div className="settings-panel pull-left">
@@ -43,8 +34,7 @@ class MainComments extends React.Component {
             <SettingsMain
               getNewUrl={getNewUrl}
               isLoading={isLoading}
-              arrayUser={arrayUser}
-              checkUser={this.checkUser}
+              // checkUser={this.checkUser}
             />
           </div>
         </div>
@@ -61,7 +51,7 @@ class MainComments extends React.Component {
                 issue={issue}
                 comments={comments}
                 isLoading={isLoading}
-                userChecked={userChecked}
+                // userChecked={userChecked}
               />
             </div>
           </div>
@@ -71,35 +61,13 @@ class MainComments extends React.Component {
   }
 }
 
-// const MainComments = ({
-//   comments, issue, getNewUrl, isLoading, arrayUser,
-// }) => (
-//   <section className="main clearfix">
-//     <div className="settings-panel pull-left">
-//       <div className="container-settings">
-//         <SettingsMain getNewUrl={getNewUrl} isLoading={isLoading} arrayUser={arrayUser} />
-//       </div>
-//     </div>
-//     <div className="content-comments pull-left">
-//       <div className="container-thread">
-//         <div className="issue-body list-comments clearfix">
-//           <TitleComments issue={issue} isLoading={isLoading} />
-//         </div>
-//         <div className="list-comments clearfix">
-//           <MainThread issue={issue} comments={comments} isLoading={isLoading} />
-//         </div>
-//       </div>
-//     </div>
-//   </section>
-// );
 
-// MainComments.propTypes = {
-//   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-//   getNewUrl: PropTypes.func.isRequired,
-//   isLoading: PropTypes.bool.isRequired,
-//   arrayUser: PropTypes.arrayOf(PropTypes.string).isRequired,
-// };
+MainComments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  getNewUrl: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 
 export default MainComments;

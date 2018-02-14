@@ -4,11 +4,14 @@ import UrlInput from './settings/UrlInput';
 import UserFilter from './settings/UserFilter';
 
 const SettingsMain = ({
-  getNewUrl, isLoading, arrayUser, checkUser,
+  getNewUrl, isLoading,
 }) => (
   [
     <UrlInput key="UrlInput" getNewUrl={getNewUrl} isLoading={isLoading} />,
-    <UserFilter key="UserFilter" arrayUser={arrayUser} checkUser={checkUser} />,
+    <UserFilter
+      key="UserFilter"
+      // checkUser={checkUser}
+    />,
   ]
 );
 

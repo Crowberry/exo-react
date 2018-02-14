@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
-import sortLoginUser from './components/_functions/sortLoginUser';
+// import sortLoginUser from './components/_functions/sortLoginUser';
 
 class App extends React.Component {
   state = {
@@ -10,19 +10,15 @@ class App extends React.Component {
     issue: {},
     comments: [],
     isLoading: true,
-    arrayUser: [],
   };
 
   componentWillMount() {
     fetchApiURl(this.state.urlApi)
       .then((data) => {
-        let tempsArrayUser = [];
-        tempsArrayUser = sortLoginUser(data.comments, data.issue);
         this.setState({
           issue: data.issue,
           comments: data.comments,
           isLoading: false,
-          arrayUser: tempsArrayUser,
         });
       });
   }
@@ -31,13 +27,10 @@ class App extends React.Component {
     if (this.state.urlApi !== nextState.urlApi) {
       fetchApiURl(nextState.urlApi)
         .then((data) => {
-          let tempsArrayUser = [];
-          tempsArrayUser = sortLoginUser(data.comments, data.issue);
           this.setState({
             issue: data.issue,
             comments: data.comments,
             isLoading: false,
-            arrayUser: tempsArrayUser,
           });
         });
     }
@@ -49,7 +42,7 @@ class App extends React.Component {
 
   render() {
     const {
-      issue, comments, isLoading, arrayUser,
+      issue, comments, isLoading,
     } = this.state;
     return (
 
@@ -63,7 +56,6 @@ class App extends React.Component {
           comments={comments}
           getNewUrl={this.getNewUrl}
           isLoading={isLoading}
-          arrayUser={arrayUser}
         />
         }
 
@@ -71,18 +63,6 @@ class App extends React.Component {
 
 
     );
-
-    // return isLoading
-    //   ? 'wait'
-    //   : [
-    //     <HeaderIssue key="head" issue={issue} />,
-    //     <MainComments
-    //       key="body"
-    //       issue={issue}
-    //       comments={comments}
-    //       getNewUrl={this.getNewUrl}
-    //     />,
-    //   ];
   }
 }
 

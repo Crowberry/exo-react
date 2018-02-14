@@ -79,14 +79,14 @@ import Markdown from '../Markdown';
 // }
 
 const MainThread = ({
-  issue, comments, userChecked, isLoading,
+  issue, comments, isLoading,
 }) => (
   <div className="list-comments">
     {isLoading ?
       <p className="txt-center">Chargement des commentaires...</p>
         :
         comments.map(comment =>
-          (!userChecked.includes(comment.user.login) ?
+
             (comment.user.id === issue.user.id ? (
               <div
                 key={comment.id}
@@ -125,8 +125,7 @@ const MainThread = ({
                   {comment.body}
                 </Markdown>
               </div>
-            ))
-            : null))
+            )))
     }
   </div>
 );
@@ -155,7 +154,6 @@ MainThread.propTypes = {
   // }).isRequired,
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
-  userChecked: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MainThread;

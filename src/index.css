@@ -64,6 +64,10 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+p {
+  margin-bottom: 10px;
+}
+
 .clearfix:after {
   display: table;
   content: '';
@@ -297,10 +301,6 @@ header .placeholder.ph-date {
 
 .body-issue {
   margin-top: 10px;
-}
-
-.comment p {
-  margin-bottom: 10px;
 }
 
 .comment p a {

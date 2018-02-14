@@ -6,10 +6,7 @@ function callApi(apiUrl) {
 function fetchApiURl(url) {
   return callApi(url)
     .then(issue => callApi(issue.comments_url)
-      .then((comments) => {
-        console.log(issue, comments);
-        return { issue, comments };
-      }));
+      .then(comments => ({ issue, comments })));
 }
 
 export default fetchApiURl;

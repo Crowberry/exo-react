@@ -9,7 +9,9 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-fetch": "0.0.9",
-    "react-scripts": "1.1.0"
+    "react-minimal-pie-chart": "^3.0.1",
+    "react-scripts": "1.1.0",
+    "word-count": "yuehu/word-count"
   },
   "scripts": {
     "start": "react-scripts start",

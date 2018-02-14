@@ -58,21 +58,22 @@ const shapeComUser = PropTypes.shape({
   avatar_url: PropTypes.string,
 });
 
-const shapeIssueUser = PropTypes.shape({
-  id: PropTypes.number,
-  html_url: PropTypes.string,
-  login: PropTypes.string,
-  avatar_url: PropTypes.string,
-});
+// const shapeIssueUser = PropTypes.shape({
+//   id: PropTypes.number,
+//   html_url: PropTypes.string,
+//   login: PropTypes.string,
+//   avatar_url: PropTypes.string,
+// });
 
 MainThread.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     user: shapeComUser.isRequired,
   })).isRequired,
-  issue: PropTypes.shape({
-    user: shapeIssueUser.isRequired,
-  }).isRequired,
+  // issue: PropTypes.shape({
+  //   user: shapeIssueUser.isRequired,
+  // }).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
 };
 

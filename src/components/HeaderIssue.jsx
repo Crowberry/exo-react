@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 const HeaderIssue = ({ issue, isLoading }) => (
   <header>
     <div className="flex-center">
-      <div className="container container-header clearfix">
+      <div className="container clearfix">
         {isLoading ?
           [
-            <span className="placeholder ph-title pull-left" />,
-            <span className="placeholder ph-date pull-right" />,
+            <span key="placeholder-title" className="placeholder ph-title pull-left" />,
+            <span key="placeholder-date" className="placeholder ph-date pull-right" />,
           ]
           :
           [

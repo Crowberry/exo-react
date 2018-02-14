@@ -28,16 +28,16 @@ const TitleComments = ({ issue, isLoading }) => (
   </div>
 );
 
-const shapeUser = PropTypes.shape({
-  html_url: PropTypes.string,
-  login: PropTypes.string,
-  avatar_url: PropTypes.string,
-});
+// const shapeUser = PropTypes.shape({
+//   html_url: PropTypes.string,
+//   login: PropTypes.string,
+//   avatar_url: PropTypes.string,
+// });
 
 TitleComments.propTypes = {
   issue: PropTypes.shape({
     body: PropTypes.string,
-    user: shapeUser.isRequired,
+    // user: shapeUser.isRequired,
   }).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };

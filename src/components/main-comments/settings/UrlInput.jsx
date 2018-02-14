@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default class UrlInput extends React.Component {
   static propTypes = {
     getNewUrl: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   }
   state = {
     urlGit: '',
@@ -29,14 +30,23 @@ export default class UrlInput extends React.Component {
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="urlInput">Changer URL</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          value={urlGit}
-        />
-        <button type="submit">Rechercher</button>
-        <p>New url: {urlGit}</p>
+        <label htmlFor="urlInput">Changer URL issue github</label>
+        <p>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            value={urlGit}
+          />
+        </p>
+        <p>
+          <button
+            type="submit"
+            className="btn btn-principal"
+            disabled={Boolean(this.props.isLoading)}
+          >
+            Rechercher
+          </button>
+        </p>
       </form>
     );
   }

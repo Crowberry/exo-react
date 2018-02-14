@@ -47,11 +47,7 @@ table {
 	border-spacing: 0;
 }
 
-/* 
-gris-dark: rgb(48, 59, 68)
-gris-med-text: rgb(215, 226, 234)
-gris-med-bkg: rgb(238, 242, 244)
-*/
+/* --------------- BASE & HELPERS ------------------- */
 
 html {
   box-sizing: border-box;
@@ -65,6 +61,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   color: #6c7680;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .clearfix:after {
@@ -84,13 +81,17 @@ body {
   float: right;
 }
 
-.table {
-  display: table;
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 100%;
 }
-.table-cell-center {
-  display: table-cell;
-  vertical-align: middle;
+
+.txt-center {
+  text-align: center;
 }
 
 .container {
@@ -100,11 +101,12 @@ body {
   padding: 0 15px; 
 }
 
+/* --------------- HEADER ------------------- */
+
 header {
   background: rgb(48, 59, 68);
   color: rgb(215, 226, 234);
   height: 80px;
-  padding: 0 15px;
 }
 
 header h1 {
@@ -133,6 +135,26 @@ header h1 a:active .ico {
   opacity: 1;
 }
 
+.container.container-header {
+  width: 1600px;
+}
+
+/* --------------- header placeholder ------------------- */
+header .placeholder {
+  display: block;
+  height: 25px;
+  width: 300px;
+  background: #fff;
+  opacity: 0.3;
+  border-radius: 5px;
+}
+
+header .placeholder.ph-date {
+  height: 16px;
+  width: 170px;
+}
+
+/* --------------- MAIN ------------------- */
 
 .main {
    background: #fafafa;
@@ -143,20 +165,33 @@ header h1 a:active .ico {
 }
 
 .settings-panel {
-  width: 33.333333%;
+  width: calc(50% - 160px);
 }
 
+/* --------------- THREAD ------------------- */
+
 .content-comments {
-  width: 66.666667%;
+  width: calc(50% + 160px);
   background: #f0f3f5;
   border-left: 1px solid rgb(209, 220, 228);
-  padding: 30px;
   margin: 0;
 }
 
+.container-thread, .container-settings {
+  max-width: 100%;
+}
+
+.container-thread {
+  padding: 30px;
+  width: 640px;
+}
+
+/* --------------- ISSUE BODY ------------------- */
+
 .issue-body h2{
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-top: 15px;
+  max-width: calc(100% - 65px);
 }
 
 .issue-body h2 a {
@@ -181,13 +216,22 @@ header h1 a:active .ico {
   opacity: 1;
 }
 
+/* --------------- avatar ------------------- */
 
-.avatar-user {
+.avatar-user, .placeholder.ph-avatar {
   width: 50px;
   height: 50px;
-  position: relative;
-  /* overflow: hidden; */
   border-radius: 50%;
+  display: block;
+}
+
+.placeholder.ph-avatar {
+  background: #ccc;
+  opacity: .5;
+}
+
+.avatar-user {
+  position: relative;
   border: 3px solid white;
   box-shadow: 0 1px 2px rgba(0,0,0,0.15);
   transform: translate3d(0,0,0);
@@ -232,22 +276,46 @@ header h1 a:active .ico {
 }
 
 
+
+
 .list-comments > div {
   margin-bottom: 30px;
+  max-width: 100%;
+  width: initial;
 }
 
-.list-comments div .comment{
+.comment{
   min-height: 50px;
   border-radius: 10px;
   background: #f5fcff;
+  width: calc(100% - 65px);
   max-width: 560px;
   padding: 20px;
   line-height: 1.3333;
   word-wrap: break-word;
 }
 
+.body-issue {
+  margin-top: 10px;
+}
+
 .comment p {
   margin-bottom: 10px;
+}
+
+.comment p a {
+  color: #E07A5F;
+}
+
+.comment code {
+  display: inline-block;
+  background: #f8efed;
+  padding: 1px 5px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgb(48, 59, 68);
+  border-radius: 3px;
+  word-break: break-word;
 }
 
 .comment p:last-child {
@@ -257,5 +325,68 @@ header h1 a:active .ico {
 
 .list-comments .commentsOther .comment {
   background: white;
-
 }
+
+
+
+/* ----------- SETTINGS PANEL ------------- */
+
+
+/* .settings-panel {
+} */
+
+.container-settings {
+  padding: 30px;
+  width: 320px;
+  float: right;
+}
+
+.settings-panel form p,
+.settings-panel form label {
+  margin-bottom: 10px;
+}
+
+.settings-panel form label {
+  display: block;
+}
+.settings-panel form input {
+  width: 100%;
+  padding: 8px 5px;
+}
+
+.btn {
+  background: none;
+  border: 0;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  -webkit-user-select: none;
+  user-select: none;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color .2s ease-in, background-color .2s ease-in;
+}
+
+.btn-principal {
+  color: #fff;
+  background: #E07A5F;
+  border: 2px solid #E07A5F;
+}
+
+.btn-principal:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.btn-principal:not(:disabled):hover,
+.btn-principal:not(:disabled):active,
+.btn-principal:not(:disabled):focus {
+  background: #fff;
+  color: #E07A5F;
+}
+
+
+

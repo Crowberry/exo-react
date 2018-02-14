@@ -5,19 +5,21 @@ import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
 
 const MainComments = ({
-  comments, issue, getNewUrl,
+  comments, issue, getNewUrl, isLoading,
 }) => (
   <section className="main clearfix">
     <div className="settings-panel pull-left">
-      <SettingsMain getNewUrl={getNewUrl} />
+      <div className="container-settings">
+        <SettingsMain getNewUrl={getNewUrl} isLoading={isLoading} />
+      </div>
     </div>
     <div className="content-comments pull-left">
-      <div className="container">
+      <div className="container-thread">
         <div className="issue-body list-comments clearfix">
-          <TitleComments issue={issue} />
+          <TitleComments issue={issue} isLoading={isLoading} />
         </div>
         <div className="list-comments clearfix">
-          <MainThread issue={issue} comments={comments} />
+          <MainThread issue={issue} comments={comments} isLoading={isLoading} />
         </div>
       </div>
     </div>
@@ -25,9 +27,10 @@ const MainComments = ({
 );
 
 MainComments.propTypes = {
-  comments: PropTypes.shape({}).isRequired,
-  issue: PropTypes.shape({}).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   getNewUrl: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 

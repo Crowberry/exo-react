@@ -1,5 +1,8 @@
 function callApi(apiUrl) {
-  return fetch(apiUrl, { method: 'get' })
+  return fetch(apiUrl, {
+    method: 'get',
+    headers: { Authorization: 'bearer 30074a16ab1259805556a9dd2514221c1de145c2' },
+  })
     .then(response => response.json());
 }
 

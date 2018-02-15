@@ -10,10 +10,6 @@ class MainComments extends React.Component {
     filteredUsers: ['ChALkeR'],
   }
 
-  // 1// onFilteredUsersChange = (changedUsers) => {
-  //   this.setState({ filteredUsers: changedUsers });
-  // }
-  // 2 //
   onFilteredUsersChange = (changedUsers) => {
     // case user add in filteredUser
     // check if user isn't already in filteredUser

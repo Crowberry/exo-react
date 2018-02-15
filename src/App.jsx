@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
-// import sortLoginUser from './components/_functions/sortLoginUser';
+
 
 class App extends React.Component {
   state = {
@@ -40,6 +40,18 @@ class App extends React.Component {
     this.setState({ urlApi: dataFromUrlInput, isLoading: true });
   };
 
+  fetchData(url) {
+    fetchApiURl(url)
+      .then((data) => {
+        this.setState({
+          issue: data.issue,
+          comments: data.comments,
+          isLoading: false,
+        });
+      });
+  }
+
+
   render() {
     const {
       issue, comments, isLoading,
@@ -49,7 +61,6 @@ class App extends React.Component {
       <div className="container-app">
         <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
 
-        {isLoading ? 'wait' :
         <MainComments
           key="body"
           issue={issue}
@@ -57,7 +68,6 @@ class App extends React.Component {
           getNewUrl={this.getNewUrl}
           isLoading={isLoading}
         />
-        }
 
       </div>
 

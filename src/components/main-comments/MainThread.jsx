@@ -73,7 +73,6 @@ MainThread.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
   filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
-
 };
 
 export default MainThread;

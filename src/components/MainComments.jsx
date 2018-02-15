@@ -27,6 +27,7 @@ class MainComments extends React.Component {
   }
 
   render() {
+
     const {
       comments,
       issue,
@@ -48,6 +49,8 @@ class MainComments extends React.Component {
               users={sortLoginUser(comments, issue)}
               filteredUsers={filteredUsers}
               onFilteredUsersChange={this.onFilteredUsersChange}
+              issue={issue}
+              comments={comments}
             />
           </div>
         </div>

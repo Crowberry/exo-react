@@ -4,10 +4,12 @@ import TitleComments from './main-comments/TitleComments';
 import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
 import sortLoginUser from './_functions/sortLoginUser';
+import sortCommentFiltered from './_functions/sortCommentFiltered';
 
 class MainComments extends React.Component {
   state = {
-    filteredUsers: ['ChALkeR'],
+    filteredUsers: [],
+    filteredComments: {},
   }
 
   onFilteredUsersChange = (changedUsers) => {
@@ -64,7 +66,7 @@ class MainComments extends React.Component {
             <div className="list-comments clearfix">
               <MainThread
                 issue={issue}
-                comments={comments}
+                comments={sortCommentFiltered(comments, filteredUsers)}
                 isLoading={isLoading}
                 filteredUsers={filteredUsers}
               />

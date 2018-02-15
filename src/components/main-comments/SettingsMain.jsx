@@ -5,7 +5,7 @@ import Graph from './settings/Graph';
 import UserFilter from './settings/UserFilter';
 
 const SettingsMain = ({
-  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange,issue, comments,
+  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, issue, comments,
 }) => (
 
   [

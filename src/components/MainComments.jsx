@@ -27,7 +27,6 @@ class MainComments extends React.Component {
   }
 
   render() {
-
     const {
       comments,
       issue,
@@ -39,7 +38,7 @@ class MainComments extends React.Component {
 
     return (
 
-
+      isLoading ? null :
       <section className="main clearfix">
         <div className="settings-panel pull-left">
           <div className="container-settings">

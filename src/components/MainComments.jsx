@@ -3,23 +3,34 @@ import PropTypes from 'prop-types';
 import TitleComments from './main-comments/TitleComments';
 import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
+import sortLoginUser from './_functions/sortLoginUser';
 
 class MainComments extends React.Component {
   state = {
-    userChecked: [],
-    arrayUser: [],
+    filteredUsers: ['ChALkeR'],
   }
 
-  // checkUser = (dataFromCheck) => {
-  //   this.setState({
-  //     userChecked: dataFromCheck,
-  //   });
+  // 1// onFilteredUsersChange = (changedUsers) => {
+  //   this.setState({ filteredUsers: changedUsers });
   // }
+  // 2 //
+  onFilteredUsersChange = (changedUsers) => {
+    // case user add in filteredUser
+    // check if user isn't already in filteredUser
+    if (!this.state.filteredUsers.includes(changedUsers)) {
+      this.setState(prevState => ({
+        filteredUsers: [...prevState.filteredUsers, changedUsers],
+      }));
+    } else if (this.state.filteredUsers.includes(changedUsers)) {
+      // case user remove in filteredUser
+      // Check if user is in filteredUser
+      this.setState(prevState => ({
+        filteredUsers: prevState.filteredUsers.filter(item => item !== changedUsers),
+      }));
+    }
+  }
 
   render() {
-    const {
-      userChecked,
-    } = this.state;
     const {
       comments,
       issue,
@@ -27,14 +38,20 @@ class MainComments extends React.Component {
       isLoading,
     } = this.props;
 
+    const { filteredUsers } = this.state;
+
     return (
+
+
       <section className="main clearfix">
         <div className="settings-panel pull-left">
           <div className="container-settings">
             <SettingsMain
               getNewUrl={getNewUrl}
               isLoading={isLoading}
-              // checkUser={this.checkUser}
+              users={sortLoginUser(comments, issue)}
+              filteredUsers={filteredUsers}
+              onFilteredUsersChange={this.onFilteredUsersChange}
             />
           </div>
         </div>
@@ -51,7 +68,7 @@ class MainComments extends React.Component {
                 issue={issue}
                 comments={comments}
                 isLoading={isLoading}
-                // userChecked={userChecked}
+                filteredUsers={filteredUsers}
               />
             </div>
           </div>
@@ -67,6 +84,7 @@ MainComments.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   getNewUrl: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+
 };
 
 

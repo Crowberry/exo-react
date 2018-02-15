@@ -64,6 +64,10 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+p {
+  margin-bottom: 10px;
+}
+
 .clearfix:after {
   display: table;
   content: '';
@@ -104,7 +108,7 @@ body {
 /* --------------- HEADER ------------------- */
 
 header {
-  background: rgb(48, 59, 68);
+  background: #303b44;
   color: rgb(215, 226, 234);
   height: 80px;
 }
@@ -299,12 +303,8 @@ header .placeholder.ph-date {
   margin-top: 10px;
 }
 
-.comment p {
-  margin-bottom: 10px;
-}
-
 .comment p a {
-  color: #E07A5F;
+  color: #ef7f47;
 }
 
 .comment code {
@@ -313,7 +313,7 @@ header .placeholder.ph-date {
   padding: 1px 5px;
   font-size: 14px;
   line-height: 1.45;
-  color: rgb(48, 59, 68);
+  color: #303b44;
   border-radius: 3px;
   word-break: break-word;
 }
@@ -372,8 +372,8 @@ header .placeholder.ph-date {
 
 .btn-principal {
   color: #fff;
-  background: #E07A5F;
-  border: 2px solid #E07A5F;
+  background: #ef7f47;
+  border: 2px solid #ef7f47;
 }
 
 .btn-principal:disabled {
@@ -385,7 +385,7 @@ header .placeholder.ph-date {
 .btn-principal:not(:disabled):active,
 .btn-principal:not(:disabled):focus {
   background: #fff;
-  color: #E07A5F;
+  color: #ef7f47;
 }
 
 

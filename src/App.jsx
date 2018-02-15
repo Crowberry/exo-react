@@ -2,7 +2,6 @@ import React from 'react';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
-import sortLoginUser from './components/_functions/sortLoginUser';
 
 class App extends React.Component {
   state = {
@@ -10,36 +9,16 @@ class App extends React.Component {
     issue: {},
     comments: [],
     isLoading: true,
-    arrayUser: [],
+    // arrayUser: [],
   };
 
   componentWillMount() {
-    fetchApiURl(this.state.urlApi)
-      .then((data) => {
-        let tempsArrayUser = [];
-        tempsArrayUser = sortLoginUser(data.comments, data.issue);
-        this.setState({
-          issue: data.issue,
-          comments: data.comments,
-          isLoading: false,
-          arrayUser: tempsArrayUser,
-        });
-      });
+    this.fetchData(this.state.urlApi);
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.urlApi !== nextState.urlApi) {
-      fetchApiURl(nextState.urlApi)
-        .then((data) => {
-          let tempsArrayUser = [];
-          tempsArrayUser = sortLoginUser(data.comments, data.issue);
-          this.setState({
-            issue: data.issue,
-            comments: data.comments,
-            isLoading: false,
-            arrayUser: tempsArrayUser,
-          });
-        });
+      this.fetchData(nextState.urlApi);
     }
   }
 
@@ -47,42 +26,39 @@ class App extends React.Component {
     this.setState({ urlApi: dataFromUrlInput, isLoading: true });
   };
 
+  fetchData(url) {
+    fetchApiURl(url)
+      .then((data) => {
+        this.setState({
+          issue: data.issue,
+          comments: data.comments,
+          isLoading: false,
+        });
+      });
+  }
+
+
   render() {
     const {
-      issue, comments, isLoading, arrayUser,
+      issue, comments, isLoading,
     } = this.state;
     return (
 
       <div className="container-app">
         <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
 
-        {isLoading ? 'wait' :
         <MainComments
           key="body"
           issue={issue}
           comments={comments}
           getNewUrl={this.getNewUrl}
           isLoading={isLoading}
-          arrayUser={arrayUser}
         />
-        }
 
       </div>
 
 
     );
-
-    // return isLoading
-    //   ? 'wait'
-    //   : [
-    //     <HeaderIssue key="head" issue={issue} />,
-    //     <MainComments
-    //       key="body"
-    //       issue={issue}
-    //       comments={comments}
-    //       getNewUrl={this.getNewUrl}
-    //     />,
-    //   ];
   }
 }
 

@@ -3,22 +3,36 @@ import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
 
+
 class App extends React.Component {
   state = {
     urlApi: 'https://api.github.com/repos/nodejs/node/issues/6867',
     issue: {},
     comments: [],
     isLoading: true,
-    // arrayUser: [],
   };
 
   componentWillMount() {
-    this.fetchData(this.state.urlApi);
+    fetchApiURl(this.state.urlApi)
+      .then((data) => {
+        this.setState({
+          issue: data.issue,
+          comments: data.comments,
+          isLoading: false,
+        });
+      });
   }
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.urlApi !== nextState.urlApi) {
-      this.fetchData(nextState.urlApi);
+      fetchApiURl(nextState.urlApi)
+        .then((data) => {
+          this.setState({
+            issue: data.issue,
+            comments: data.comments,
+            isLoading: false,
+          });
+        });
     }
   }
 

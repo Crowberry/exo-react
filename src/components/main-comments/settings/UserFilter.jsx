@@ -1,59 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 class UserFilter extends React.Component {
-  static propTypes = { arrayUser: PropTypes.arrayOf(PropTypes.string).isRequired }
+ handleInputChange= (event) => {
+   this.props.onFilteredUsersChange(event.target.value);
+ }
 
-  state = { userChecked: [], arrayUser: this.props.arrayUser }
-
-  handleCheckBox = (event) => {
-    const userValue = event.target.value;
-    if (!this.state.userChecked.includes(userValue)) {
-      this.state.userChecked.push(userValue);
-      // console.log('add ', this.state.userChecked);
-    } else {
-      const newUserChecked = this.state.userChecked.filter(value => value !== userValue);
-      // this.setState(({ userChecked }) => ({
-      //   userChecked: userChecked.filter(value => value !== userValue),
-      // }));
-      this.setState({ userChecked: newUserChecked });
-      // this.state.userChecked = this.state.userChecked.filter(value => value !== userValue);
-      // console.log('remove ', this.state.userChecked);
-    }
-
-    // console.log(this.state.userChecked);
-    this.props.checkUser(this.state.userChecked);
-  }
-
-  render() {
-    const { arrayUser } = this.state;
+ render() {
+   const {
+     users,
+     filteredUsers,
+   } = this.props;
 
 
-    return (
-      <div>
-        <h1>hide Thread</h1>
-        {
-          arrayUser.map(element =>
-            (
-              <label htmlFor={element} key={element}>
-                {element}
-                <input
-                  id={element}
-                  type="checkbox"
-                  onChange={this.handleCheckBox}
-                  value={element}
-                />
-              </label>
-            ))
-        }
-      </div>
-    );
-  }
+   return (
+     <div>
+       <h1>hide Thread</h1>
+       {users.map(user =>
+          (
+            <label htmlFor={user} key={user}>
+              {user}
+              <input
+                id={user}
+                type="checkbox"
+                onChange={this.handleInputChange}
+                value={user}
+                checked={!filteredUsers.includes(user)}
+              />
+            </label>))
+           }
+
+     </div>
+   );
+ }
 }
 
 
 UserFilter.propTypes = {
-  arrayUser: PropTypes.arrayOf(PropTypes.string).isRequired,
-  checkUser: PropTypes.func.isRequired,
+  onFilteredUsersChange: PropTypes.func.isRequired,
+  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // filteredUsers: PropTypes.string.isRequired,
+  users: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 export default UserFilter;

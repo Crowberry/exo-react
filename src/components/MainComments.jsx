@@ -3,39 +3,52 @@ import PropTypes from 'prop-types';
 import TitleComments from './main-comments/TitleComments';
 import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
+import sortLoginUser from './_functions/sortLoginUser';
 
 class MainComments extends React.Component {
-  static propTypes = {
-    issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-    isLoading: PropTypes.bool.isRequired,
-    getNewUrl: PropTypes.func.isRequired,
-  }
-
   state = {
-    userChecked: [],
+    filteredUsers: ['ChALkeR'],
   }
 
-  checkUser = (dataFromCheck) => {
-    this.setState({
-      userChecked: dataFromCheck,
-    });
+  onFilteredUsersChange = (changedUsers) => {
+    // case user add in filteredUser
+    // check if user isn't already in filteredUser
+    if (!this.state.filteredUsers.includes(changedUsers)) {
+      this.setState(prevState => ({
+        filteredUsers: [...prevState.filteredUsers, changedUsers],
+      }));
+    } else if (this.state.filteredUsers.includes(changedUsers)) {
+      // case user remove in filteredUser
+      // Check if user is in filteredUser
+      this.setState(prevState => ({
+        filteredUsers: prevState.filteredUsers.filter(item => item !== changedUsers),
+      }));
+    }
   }
 
   render() {
-    const { userChecked } = this.state;
 
     const {
-      issue, comments, isLoading, getNewUrl,
+      comments,
+      issue,
+      getNewUrl,
+      isLoading,
     } = this.props;
 
+    const { filteredUsers } = this.state;
+
     return (
+
+
       <section className="main clearfix">
         <div className="settings-panel pull-left">
           <div className="container-settings">
             <SettingsMain
               getNewUrl={getNewUrl}
               isLoading={isLoading}
+              users={sortLoginUser(comments, issue)}
+              filteredUsers={filteredUsers}
+              onFilteredUsersChange={this.onFilteredUsersChange}
               issue={issue}
               comments={comments}
             />
@@ -54,7 +67,7 @@ class MainComments extends React.Component {
                 issue={issue}
                 comments={comments}
                 isLoading={isLoading}
-                userChecked={userChecked}
+                filteredUsers={filteredUsers}
               />
             </div>
           </div>
@@ -64,35 +77,14 @@ class MainComments extends React.Component {
   }
 }
 
-// const MainComments = ({
-//   comments, issue, getNewUrl, isLoading, arrayUser,
-// }) => (
-//   <section className="main clearfix">
-//     <div className="settings-panel pull-left">
-//       <div className="container-settings">
-//         <SettingsMain getNewUrl={getNewUrl} isLoading={isLoading} arrayUser={arrayUser} />
-//       </div>
-//     </div>
-//     <div className="content-comments pull-left">
-//       <div className="container-thread">
-//         <div className="issue-body list-comments clearfix">
-//           <TitleComments issue={issue} isLoading={isLoading} />
-//         </div>
-//         <div className="list-comments clearfix">
-//           <MainThread issue={issue} comments={comments} isLoading={isLoading} />
-//         </div>
-//       </div>
-//     </div>
-//   </section>
-// );
 
-// MainComments.propTypes = {
-//   comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-//   getNewUrl: PropTypes.func.isRequired,
-//   isLoading: PropTypes.bool.isRequired,
-//   arrayUser: PropTypes.arrayOf(PropTypes.string).isRequired,
-// };
+MainComments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  getNewUrl: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+
+};
 
 
 export default MainComments;

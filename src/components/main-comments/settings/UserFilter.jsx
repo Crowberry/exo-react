@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import sortCommentFiltered from '../../_functions/sortCommentFiltered';
+
 
 class UserFilter extends React.Component {
  handleInputChange= (event) => {

@@ -25,7 +25,6 @@ class DrawPie extends React.Component {
     }
 
     dataGraph.unshift(['User', 'number of words']);
-    console.log(dataGraph);
     return (
       <div className="my-pretty-chart-container">
         <Chart

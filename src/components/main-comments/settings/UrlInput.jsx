@@ -30,7 +30,7 @@ export default class UrlInput extends React.Component {
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="urlInput">Changer URL issue github</label>
+        <p><label htmlFor="urlInput">Changer URL issue github</label></p>
         <p>
           <input
             type="text"

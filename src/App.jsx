@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
+import SettingsMain from './components/main-comments/SettingsMain';
 import fetchApiURl from './components/_functions/callApi';
 import filterComments from './components/_functions/filterComments';
 import sortLoginUser from './components/_functions/sortLoginUser';
@@ -91,17 +92,36 @@ class App extends React.Component {
       <div className="container-app">
         <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
 
-        <MainComments
-          key="body"
-          issue={issue}
-          getNewUrl={this.getNewUrl}
-          isLoading={isLoading}
-          filteredComments={filteredComments}
-          filteredUsers={filteredUsers}
-          onFilteredUsersChange={this.onFilteredUsersChange}
-          users={users}
-        />
+        <section className="main clearfix">
+          <div className="settings-panel pull-left">
+            <div className="container-settings">
+              <SettingsMain
+                getNewUrl={this.getNewUrl}
+                isLoading={isLoading}
+                users={users}
+                filteredUsers={filteredUsers}
+                onFilteredUsersChange={this.onFilteredUsersChange}
+                issue={issue}
+                filteredComments={filteredComments}
+              />
+            </div>
+          </div>
 
+          <div className="content-comments pull-left">
+            <div className="container-thread">
+              <MainComments
+                key="body"
+                issue={issue}
+                getNewUrl={this.getNewUrl}
+                isLoading={isLoading}
+                filteredComments={filteredComments}
+                filteredUsers={filteredUsers}
+                onFilteredUsersChange={this.onFilteredUsersChange}
+                users={users}
+              />
+            </div>
+          </div>
+        </section>
       </div>
 
 

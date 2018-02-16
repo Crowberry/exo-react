@@ -33,7 +33,7 @@ const Graph = ({
     totalWords += data[1];
   });
 
-  dataGraph.unshift(['Utilisateur', 'nombre de mots']);
+  dataGraph.unshift(['Utilisateurs', 'nombre de mots']);
 
   return (
     <div className="container-graph">

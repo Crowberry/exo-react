@@ -57,12 +57,7 @@ MainComments.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFilteredUsersChange: PropTypes.func.isRequired,
-  filteredComments: PropTypes.arrayOf(PropTypes.shape({
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    html_url: PropTypes.string,
-    id: PropTypes.number,
-  })).isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
   users: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

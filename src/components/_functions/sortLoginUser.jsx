@@ -1,10 +1,6 @@
-function userLoginInArray(commentData, check) {
+function userLoginInArray(commentData) {
   const tempcommentData = [];
-  if (check) {
-    commentData.forEach(comment => tempcommentData.push(comment.user.login));
-  } else {
-    commentData.forEach(comment => tempcommentData.push(comment.login));
-  }
+  commentData.forEach(comment => tempcommentData.push(comment.user.login));
   return tempcommentData;
 }
 
@@ -13,8 +9,8 @@ function removeDupArray(arr) {
   return array;
 }
 
-function sortLoginUser(commentData, issueData, bool) {
-  const authorComment = userLoginInArray(commentData, bool);
+function sortLoginUser(commentData, issueData) {
+  const authorComment = userLoginInArray(commentData);
   authorComment.push(issueData.user.login);
   const loginUser = removeDupArray(authorComment);
   return loginUser;

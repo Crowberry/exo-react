@@ -26,7 +26,6 @@ const SettingsMain = ({
       filteredComments={filteredComments}
       filteredUsers={filteredUsers}
       users={users}
-      // dataGraph={dataGraph}
     />,
   ]
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Markdown from '../Markdown';
+import Comment from './blocks/Comment';
 
 const MainThread = ({
   issue, filteredComments, isLoading,
@@ -10,47 +10,17 @@ const MainThread = ({
       <p className="txt-center">Chargement des commentaires...</p>
           :
           filteredComments.map(comment =>
-            (comment.id === issue.user.id ?
-              (
-                <div
-                  key={comment.idComment}
-                  className="clearfix authorIssue pull-left clear"
-                >
-                  <a
-                    href={comment.html_url}
-                    title={comment.login}
-                    className="avatar-user pull-left"
-                  >
-                    <img
-                      alt={comment.login}
-                      src={comment.avatar_url}
-                    />
-                  </a>
-                  <Markdown className="pull-left comment">
-                    {comment.body}
-                  </Markdown>
-                </div>
-              )
-            : (
-              <div
+            (
+              <Comment
                 key={comment.idComment}
-                className="clearfix commentsOther pull-right clear"
-              >
-                <a
-                  href={comment.html_url}
-                  title={comment.login}
-                  className="avatar-user pull-right"
-                >
-                  <img
-                    alt={comment.login}
-                    src={comment.avatar_url}
-                  />
-                </a>
-                <Markdown className="pull-right comment">
-                  {comment.body}
-                </Markdown>
-              </div>
-              )
+                comment={comment}
+                direction={
+                  comment.id === issue.user.id ?
+                    'pull-left'
+                  :
+                    'pull-right'
+                }
+              />
             ))
         }
   </div>

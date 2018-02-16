@@ -37,7 +37,6 @@ class MainComments extends React.Component {
 
     const { filteredUsers } = this.state;
 
-    // arrayGraph({ issue, comments }, sortLoginUser(comments, issue), filteredUsers);
     return (
 
       isLoading ? null :
@@ -52,7 +51,9 @@ class MainComments extends React.Component {
               onFilteredUsersChange={this.onFilteredUsersChange}
               issue={issue}
               comments={comments}
-              dataGraph={arrayGraph({ issue, comments }, sortLoginUser(comments, issue), filteredUsers)}
+              dataGraph={
+                arrayGraph({ issue, comments }, sortLoginUser(comments, issue), filteredUsers)
+              }
             />
           </div>
         </div>

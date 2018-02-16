@@ -16,7 +16,7 @@ class UserFilter extends React.Component {
    return (
      <div>
        <form className="userFilter">
-         <p>Masquer un participant</p>
+         <p className="bold">Masquer un participant</p>
 
          {users.map(user =>
           (

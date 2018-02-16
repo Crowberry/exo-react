@@ -1,4 +1,4 @@
-// affiche moi que les objects comments qui ne sont pas inclue
+// affiche moi que les objects comments qui ne sont pas inclus
 // dans le tableau filteredUSer
 function sortCommentFiltered(comments, filteredUser) {
   const filteredComments = [];
@@ -15,6 +15,6 @@ function sortCommentFiltered(comments, filteredUser) {
   });
   return filteredComments;
 }
-// sortCommentFiltered(commentsTest, ['kcz']);
+
 export default sortCommentFiltered;
 

@@ -2,8 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Chart } from 'react-google-charts';
 import Rainbow from 'rainbowvis.js';
+import arrayGraph from '../../_functions/arrayGraph';
 
-const Graph = ({ dataGraph }) => {
+const Graph = ({
+  issue,
+  filteredComments,
+  users,
+  filteredUsers,
+}) => {
+  const dataGraph = arrayGraph(
+    { issue, filteredComments },
+    users,
+    filteredUsers,
+  );
   const nbUsers = dataGraph.length;
   let colors = [];
   let totalWords = 0;
@@ -75,8 +86,17 @@ const Graph = ({ dataGraph }) => {
   );
 };
 
+
 Graph.propTypes = {
-  dataGraph: PropTypes.arrayOf(PropTypes.array).isRequired,
+  users: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  filteredComments: PropTypes.arrayOf(PropTypes.shape({
+    login: PropTypes.string,
+    avatar_url: PropTypes.string,
+    html_url: PropTypes.string,
+    id: PropTypes.number,
+  })).isRequired,
 };
 
 export default Graph;

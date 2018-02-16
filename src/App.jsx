@@ -3,6 +3,7 @@ import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
 import filterComments from './components/_functions/filterComments';
+import sortLoginUser from './components/_functions/sortLoginUser';
 
 class App extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class App extends React.Component {
     isLoading: true,
     filteredComments: [],
     filteredUsers: [],
+    users: [],
   };
 
   componentWillMount() {
@@ -22,6 +24,7 @@ class App extends React.Component {
           comments: data.comments,
           isLoading: false,
           filteredComments: data.comments,
+          users: sortLoginUser(data.comments, data.issue),
         });
       });
   }
@@ -35,6 +38,7 @@ class App extends React.Component {
             comments: data.comments,
             isLoading: false,
             filteredComments: data.comments,
+            users: sortLoginUser(data.comments, data.issue),
           });
         });
     }
@@ -73,13 +77,14 @@ class App extends React.Component {
           comments: data.comments,
           isLoading: false,
           filteredComments: data.comments,
+          users: sortLoginUser(data.comments, data.issue),
         });
       });
   }
 
   render() {
     const {
-      issue, comments, isLoading, filteredComments, filteredUsers,
+      issue, isLoading, filteredComments, filteredUsers, users,
     } = this.state;
     return (
 
@@ -89,12 +94,12 @@ class App extends React.Component {
         <MainComments
           key="body"
           issue={issue}
-          comments={comments}
           getNewUrl={this.getNewUrl}
           isLoading={isLoading}
           filteredComments={filteredComments}
           filteredUsers={filteredUsers}
           onFilteredUsersChange={this.onFilteredUsersChange}
+          users={users}
         />
 
       </div>

@@ -2,23 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class UserFilter extends React.Component {
- handleInputChange= (event) => {
-   this.props.onFilteredUsersChange(event.target.value);
- }
+  handleInputChange= (event) => {
+    this.props.onFilteredUsersChange(event.target.value);
+  }
 
- render() {
-   const {
-     users,
-     filteredUsers,
-   } = this.props;
+  render() {
+    const {
+      users,
+      filteredUsers,
+    } = this.props;
 
+    return (
+      <div>
+        <form className="userFilter">
+          <p className="bold">Masquer un participant</p>
 
-   return (
-     <div>
-       <form className="userFilter">
-         <p className="bold">Masquer un participant</p>
-
-         {users.map(user =>
+          {users.map(user =>
           (
             <div key={user}>
               <input
@@ -33,11 +32,11 @@ class UserFilter extends React.Component {
               </label>
             </div>
             ))}
-       </form>
+        </form>
 
-     </div>
-   );
- }
+      </div>
+    );
+  }
 }
 
 

@@ -3,7 +3,7 @@ import count from 'word-count';
 // function reçoit tous les commentaires ainsi que le body issue
 // ressort un tableau avec pour chaque user unique tous ses commentaires (un seul string ?)
 function arrayGraph(array, users, userFiltered) {
-  const { issue, comments } = array;
+  const { issue, filteredComments } = array;
   const arrayChecked = users.filter(word => !userFiltered.includes(word));
   const newArray = [];
 
@@ -16,7 +16,7 @@ function arrayGraph(array, users, userFiltered) {
       newArray[i][1] += issue.body;
     }
 
-    comments.forEach((comment) => {
+    filteredComments.forEach((comment) => {
       const { login } = comment.user;
       const { body } = comment;
 

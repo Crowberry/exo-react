@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 class UserFilter extends React.Component {
  handleInputChange= (event) => {
    this.props.onFilteredUsersChange(event.target.value);
@@ -17,23 +16,23 @@ class UserFilter extends React.Component {
    return (
      <div>
        <form className="userFilter">
-         <p>Masquer un participant</p>
+         <p className="bold">Masquer un participant</p>
 
          {users.map(user =>
-          ([
-            <input
-              id={user}
-              type="checkbox"
-              onChange={this.handleInputChange}
-              value={user}
-              checked={!filteredUsers.includes(user)}
-            />,
-            <label htmlFor={user} key={user}>
-              {user}
-            </label>]
-            ))
-
-           }
+          (
+            <div key={user}>
+              <input
+                id={user}
+                type="checkbox"
+                onChange={this.handleInputChange}
+                value={user}
+                checked={!filteredUsers.includes(user)}
+              />
+              <label htmlFor={user} >
+                {user}
+              </label>
+            </div>
+            ))}
        </form>
 
      </div>

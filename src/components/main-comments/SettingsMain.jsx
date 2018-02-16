@@ -5,7 +5,7 @@ import Graph from './settings/Graph';
 import UserFilter from './settings/UserFilter';
 
 const SettingsMain = ({
-  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, issue, comments, dataGraph,
+  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, dataGraph,
 }) => (
 
   [
@@ -18,11 +18,6 @@ const SettingsMain = ({
     />,
     <Graph
       key="Graph"
-      issue={issue}
-      comments={comments}
-      isLoading={isLoading}
-      users={users}
-      filteredUsers={filteredUsers}
       dataGraph={dataGraph}
     />,
   ]
@@ -33,8 +28,6 @@ SettingsMain.propTypes = {
   filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFilteredUsersChange: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 

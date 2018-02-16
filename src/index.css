@@ -67,6 +67,10 @@ p {
   margin-bottom: 10px;
 }
 
+b, .bold {
+  font-weight: 700;
+}
+
 .clearfix:after {
   display: table;
   content: '';
@@ -363,18 +367,10 @@ header .placeholder.ph-date {
   color: #ef7f47;
 }
 
-/* .settings-panel {
-} */
-
 .container-settings {
   padding: 30px;
   width: 320px;
   float: right;
-}
-
-.settings-panel form p,
-.settings-panel form label {
-  margin-bottom: 10px;
 }
 
 .settings-panel form label {
@@ -386,21 +382,33 @@ header .placeholder.ph-date {
 }
 
 /*---- UserFilter----*/
+.userFilter {
+  margin-top: 30px;
+}
+
 .userFilter input[type="checkbox"] {
   display: none;
 }
 
 .userFilter label {
-  margin-bottom: 10px;
-  transition: color .2s ease-in;
+  padding: 5px;
+  transition: color .2s ease-in, background-color .2s ease-in;
   position: relative;
   text-indent: 20px;
+  cursor: pointer;
 }
+
+.userFilter label:hover {
+  background: #f0f3f5;
+  color: #40464d;
+}
+
 .userFilter label:before, label:after{  
   display:block;
   position:absolute;
   cursor:pointer;
 } 
+
 .userFilter label:before {
   content:'';
 
@@ -410,6 +418,7 @@ header .placeholder.ph-date {
   width:16px;
   height:16px;
 }
+
 .userFilter label:after {
   opacity: 0;
   content:'\2714';
@@ -417,15 +426,56 @@ header .placeholder.ph-date {
   transition: opacity .2s ease-in;
   font-size:14px;
   font-size: 15px;
-  top: 2px;
-  left: 2px;
+  top: 7px;
+  left: 7px;
   text-indent: 0;
 }
+
 .userFilter input[type="checkbox"]:checked label {
   color: #ef7f47;
 }
 
 .userFilter input[type="checkbox"]:checked + label:after {
   opacity: 1;
+}
+
+
+/* --------- GRAPH -------- */
+.container-graph {
+  margin-top: 30px;
+}
+
+div.google-visualization-tooltip { 
+  pointer-events: none;
+} 
+
+.color-box {
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  background: red;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.container-graph ul li {
+  margin-bottom: 5px;
+}
+
+.container-graph ul li:first-child {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.container-graph ul li span:first-child {
+  width: calc(100% - 100px);
+  word-break: break-all;
+  padding-left: 5px;
+}
+
+.percent {
+  font-weight: 400;
+  font-size: 12px;
 }
 

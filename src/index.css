@@ -67,6 +67,10 @@ p {
   margin-bottom: 10px;
 }
 
+b, .bold {
+  font-weight: 700;
+}
+
 .clearfix:after {
   display: table;
   content: '';
@@ -439,6 +443,39 @@ header .placeholder.ph-date {
 /* --------- GRAPH -------- */
 .container-graph {
   margin-top: 30px;
-  text-align: center;
+}
+
+div.google-visualization-tooltip { 
+  pointer-events: none;
+} 
+
+.color-box {
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  background: red;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.container-graph ul li {
+  margin-bottom: 5px;
+}
+
+.container-graph ul li:first-child {
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.container-graph ul li span:first-child {
+  width: calc(100% - 100px);
+  word-break: break-all;
+  padding-left: 5px;
+}
+
+.percent {
+  font-weight: 400;
+  font-size: 12px;
 }
 

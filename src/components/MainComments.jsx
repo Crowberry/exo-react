@@ -66,7 +66,7 @@ class MainComments extends React.Component {
             <div className="list-comments clearfix">
               <MainThread
                 issue={issue}
-                comments={sortCommentFiltered(comments, filteredUsers)}
+                comments={comments}
                 isLoading={isLoading}
                 filteredUsers={filteredUsers}
               />

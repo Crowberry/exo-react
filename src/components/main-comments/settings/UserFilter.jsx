@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import sortCommentFiltered from '../../_functions/sortCommentFiltered';
 
 class UserFilter extends React.Component {
  handleInputChange= (event) => {
@@ -20,20 +19,20 @@ class UserFilter extends React.Component {
          <p>Masquer un participant</p>
 
          {users.map(user =>
-          ([
-            <input
-              id={user}
-              type="checkbox"
-              onChange={this.handleInputChange}
-              value={user}
-              checked={!filteredUsers.includes(user)}
-            />,
-            <label htmlFor={user} key={user}>
-              {user}
-            </label>]
-            ))
-
-           }
+          (
+            <div key={user}>
+              <input
+                id={user}
+                type="checkbox"
+                onChange={this.handleInputChange}
+                value={user}
+                checked={!filteredUsers.includes(user)}
+              />
+              <label htmlFor={user} >
+                {user}
+              </label>
+            </div>
+            ))}
        </form>
 
      </div>

@@ -4,16 +4,12 @@ import DrawPie from './DrawPie';
 
 
 const Graph = ({
-  isLoading, issue, comments, users, filteredUsers, dataGraph,
+  isLoading, dataGraph,
 }) => (
   <div className="container-graph">
     <p>Qui est le plus bavard ?</p>
     {isLoading ? 'wait' :
     <DrawPie
-      issue={issue}
-      comments={comments}
-      users={users}
-      filteredUsers={filteredUsers}
       dataGraph={dataGraph}
     />
       }
@@ -21,11 +17,7 @@ const Graph = ({
 );
 
 Graph.propTypes = {
-  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
   dataGraph: PropTypes.arrayOf(PropTypes.array).isRequired,
-  users: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 

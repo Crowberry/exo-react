@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 
@@ -8,8 +8,8 @@ const TitleComments = ({ issue, isLoading }) => (
     {isLoading ?
       <span className="placeholder ph-avatar" />
       :
-      [
-        <div key="userTitle" className="clearfix">
+      <Fragment>
+        <div className="clearfix">
           <a href={issue.user.html_url} title={issue.user.login} className="avatar-user pull-left">
             <img alt={issue.user.login} src={issue.user.avatar_url} />
           </a>
@@ -19,10 +19,10 @@ const TitleComments = ({ issue, isLoading }) => (
               {issue.user.login} <i className="fas fa-external-link-alt ico" />
             </a>
           </h2>
-        </div>,
+        </div>
 
-        <Markdown key="bodyTitle" className="body-issue">{issue.body}</Markdown>,
-      ]
+        <Markdown className="body-issue">{issue.body}</Markdown>,
+      </Fragment>
     }
 
   </div>

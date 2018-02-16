@@ -5,11 +5,15 @@ import Graph from './settings/Graph';
 import UserFilter from './settings/UserFilter';
 
 const SettingsMain = ({
-  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, dataGraph,
+  getNewUrl, isLoading, users, filteredUsers, filteredComments, issue, onFilteredUsersChange,
 }) => (
 
   [
-    <UrlInput key="UrlInput" getNewUrl={getNewUrl} isLoading={isLoading} />,
+    <UrlInput
+      key="UrlInput"
+      getNewUrl={getNewUrl}
+      isLoading={isLoading}
+    />,
     <UserFilter
       key="UserFilter"
       users={users}
@@ -18,7 +22,11 @@ const SettingsMain = ({
     />,
     <Graph
       key="Graph"
-      dataGraph={dataGraph}
+      issue={issue}
+      filteredComments={filteredComments}
+      filteredUsers={filteredUsers}
+      users={users}
+      // dataGraph={dataGraph}
     />,
   ]
 );
@@ -28,6 +36,7 @@ SettingsMain.propTypes = {
   filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
   onFilteredUsersChange: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  users: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 

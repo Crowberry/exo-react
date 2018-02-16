@@ -9,11 +9,11 @@ const MainThread = ({
     {isLoading ?
       <p className="txt-center">Chargement des commentaires...</p>
           :
-          filteredComments.map((comment, i) =>
+          filteredComments.map(comment =>
             (comment.id === issue.user.id ?
               (
                 <div
-                  key={i}
+                  key={comment.idComment}
                   className="clearfix authorIssue pull-left clear"
                 >
                   <a
@@ -33,7 +33,7 @@ const MainThread = ({
               )
             : (
               <div
-                key={i}
+                key={comment.idComment}
                 className="clearfix commentsOther pull-right clear"
               >
                 <a
@@ -59,6 +59,12 @@ const MainThread = ({
 MainThread.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.shape({
+    login: PropTypes.string,
+    avatar_url: PropTypes.string,
+    html_url: PropTypes.string,
+    id: PropTypes.number,
+  })).isRequired,
 };
 
 export default MainThread;

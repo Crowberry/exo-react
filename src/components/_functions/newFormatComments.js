@@ -7,6 +7,7 @@ function newFormatComments(comments) {
       body: comment.body,
       id: comment.user.id,
       html_url: comment.html_url,
+      idComment: comment.id,
     });
   });
   return filteredComments;

@@ -1,27 +1,17 @@
 import count from 'word-count';
-import Rainbow from 'rainbowvis.js';
-import sortLoginUser from './sortLoginUser';
-
-// on déclare les 2 couleurs que va prendre le graph et qui vont faire un gradient
-const rainbow = new Rainbow();
-rainbow.setSpectrum('#ef7f47', '#F6B99A');
 
 // function reçoit tous les commentaires ainsi que le body issue
 // ressort un tableau avec pour chaque user unique tous ses commentaires (un seul string ?)
-function arrayGraph(array) {
+function arrayGraph(array, users, userFiltered) {
   const { issue, comments } = array;
+  const arrayChecked = users.filter(word => !userFiltered.includes(word));
   const newArray = [];
-  const uniqArray = sortLoginUser(comments, issue);
-  // const nbUsers = uniqArray.length;
 
   // pour chaque utilisateur unique, on parcourt le tableau des commentaires,
   // et on leur associe leurs commentaires
-  uniqArray.forEach((user, i) => {
-    // const coefRainbow = (i * 100) / (nbUsers - 1);
 
-    // newArray.push({ value: '', key: user, color: `#${rainbow.colourAt(coefRainbow)}` });
+  arrayChecked.forEach((user, i) => {
     newArray.push([user, '']);
-
     if (issue.user.login === user) {
       newArray[i][1] += issue.body;
     }

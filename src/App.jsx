@@ -2,7 +2,8 @@ import React from 'react';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import fetchApiURl from './components/_functions/callApi';
-
+import newFormatComments from './components/_functions/newFormatComments';
+import sortCommentFiltered from './components/_functions/sortCommentFiltered';
 
 class App extends React.Component {
   state = {
@@ -10,6 +11,8 @@ class App extends React.Component {
     issue: {},
     comments: [],
     isLoading: true,
+    filteredComments: [],
+    filteredUsers: [],
   };
 
   componentWillMount() {
@@ -19,6 +22,7 @@ class App extends React.Component {
           issue: data.issue,
           comments: data.comments,
           isLoading: false,
+          filteredComments: newFormatComments(data.comments),
         });
       });
   }
@@ -31,8 +35,30 @@ class App extends React.Component {
             issue: data.issue,
             comments: data.comments,
             isLoading: false,
+            filteredComments: newFormatComments(data.comments),
           });
         });
+    }
+  }
+
+  onFilteredUsersChange = (changedUsers) => {
+    // case user add in filteredUser
+    // check if user isn't already in filteredUser
+    if (!this.state.filteredUsers.includes(changedUsers)) {
+      this.setState(prevState => ({
+        filteredUsers: [...prevState.filteredUsers, changedUsers],
+        filteredComments: sortCommentFiltered(prevState.filteredComments, [changedUsers]),
+      }));
+    } else if (this.state.filteredUsers.includes(changedUsers)) {
+      // case user remove in filteredUser
+      // Check if user is in filteredUser
+      this.setState(prevState => ({
+        filteredComments: sortCommentFiltered(
+          newFormatComments(this.state.comments),
+          prevState.filteredUsers.filter(item => item !== changedUsers),
+        ),
+        filteredUsers: prevState.filteredUsers.filter(item => item !== changedUsers),
+      }));
     }
   }
 
@@ -51,10 +77,9 @@ class App extends React.Component {
       });
   }
 
-
   render() {
     const {
-      issue, comments, isLoading,
+      issue, comments, isLoading, filteredComments, filteredUsers,
     } = this.state;
     return (
 
@@ -67,6 +92,9 @@ class App extends React.Component {
           comments={comments}
           getNewUrl={this.getNewUrl}
           isLoading={isLoading}
+          filteredComments={filteredComments}
+          filteredUsers={filteredUsers}
+          onFilteredUsersChange={this.onFilteredUsersChange}
         />
 
       </div>

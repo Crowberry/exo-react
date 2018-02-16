@@ -6,26 +6,12 @@ import SettingsMain from './main-comments/SettingsMain';
 import sortLoginUser from './_functions/sortLoginUser';
 import arrayGraph from './_functions/arrayGraph';
 
+
 class MainComments extends React.Component {
   state = {
-    filteredUsers: [],
+
   }
 
-  onFilteredUsersChange = (changedUsers) => {
-    // case user add in filteredUser
-    // check if user isn't already in filteredUser
-    if (!this.state.filteredUsers.includes(changedUsers)) {
-      this.setState(prevState => ({
-        filteredUsers: [...prevState.filteredUsers, changedUsers],
-      }));
-    } else if (this.state.filteredUsers.includes(changedUsers)) {
-      // case user remove in filteredUser
-      // Check if user is in filteredUser
-      this.setState(prevState => ({
-        filteredUsers: prevState.filteredUsers.filter(item => item !== changedUsers),
-      }));
-    }
-  }
 
   render() {
     const {
@@ -33,9 +19,11 @@ class MainComments extends React.Component {
       issue,
       getNewUrl,
       isLoading,
+      filteredComments,
+      filteredUsers,
+      onFilteredUsersChange,
     } = this.props;
-
-    const { filteredUsers } = this.state;
+    // const { filteredUsers } = this.state;
 
     return (
 
@@ -48,7 +36,7 @@ class MainComments extends React.Component {
               isLoading={isLoading}
               users={sortLoginUser(comments, issue)}
               filteredUsers={filteredUsers}
-              onFilteredUsersChange={this.onFilteredUsersChange}
+              onFilteredUsersChange={onFilteredUsersChange}
               issue={issue}
               comments={comments}
               dataGraph={
@@ -68,9 +56,8 @@ class MainComments extends React.Component {
             <div className="list-comments clearfix">
               <MainThread
                 issue={issue}
-                comments={comments}
                 isLoading={isLoading}
-                filteredUsers={filteredUsers}
+                filteredComments={filteredComments}
               />
             </div>
           </div>
@@ -86,7 +73,14 @@ MainComments.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   getNewUrl: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-
+  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onFilteredUsersChange: PropTypes.func.isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.shape({
+    login: PropTypes.string,
+    avatar_url: PropTypes.string,
+    html_url: PropTypes.string,
+    id: PropTypes.number,
+  })).isRequired,
 };
 
 

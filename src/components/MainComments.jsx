@@ -4,10 +4,11 @@ import TitleComments from './main-comments/TitleComments';
 import MainThread from './main-comments/MainThread';
 import SettingsMain from './main-comments/SettingsMain';
 import sortLoginUser from './_functions/sortLoginUser';
+import arrayGraph from './_functions/arrayGraph';
 
 class MainComments extends React.Component {
   state = {
-    filteredUsers: ['ChALkeR'],
+    filteredUsers: ['xhallix'],
   }
 
   onFilteredUsersChange = (changedUsers) => {
@@ -36,6 +37,7 @@ class MainComments extends React.Component {
 
     const { filteredUsers } = this.state;
 
+    // arrayGraph({ issue, comments }, sortLoginUser(comments, issue), filteredUsers);
     return (
 
       isLoading ? null :
@@ -50,6 +52,7 @@ class MainComments extends React.Component {
               onFilteredUsersChange={this.onFilteredUsersChange}
               issue={issue}
               comments={comments}
+              dataGraph={arrayGraph({ issue, comments }, sortLoginUser(comments, issue), filteredUsers)}
             />
           </div>
         </div>

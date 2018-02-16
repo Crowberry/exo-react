@@ -5,7 +5,7 @@ import Graph from './settings/Graph';
 import UserFilter from './settings/UserFilter';
 
 const SettingsMain = ({
-  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, issue, comments,
+  getNewUrl, isLoading, users, filteredUsers, onFilteredUsersChange, issue, comments, dataGraph,
 }) => (
 
   [
@@ -16,7 +16,15 @@ const SettingsMain = ({
       filteredUsers={filteredUsers}
       onFilteredUsersChange={onFilteredUsersChange}
     />,
-    <Graph key="Graph" issue={issue} comments={comments} isLoading={isLoading} />,
+    <Graph
+      key="Graph"
+      issue={issue}
+      comments={comments}
+      isLoading={isLoading}
+      users={users}
+      filteredUsers={filteredUsers}
+      dataGraph={dataGraph}
+    />,
   ]
 );
 

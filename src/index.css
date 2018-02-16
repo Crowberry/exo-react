@@ -59,9 +59,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
   color: #6c7680;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -341,7 +340,7 @@ header .placeholder.ph-date {
   display: block;
   width: 100%;
   padding: 8px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
   transition: color .2s ease-in, background-color .2s ease-in;
 }

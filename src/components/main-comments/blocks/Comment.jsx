@@ -7,13 +7,13 @@ const Comment = ({ comment, direction }) => (
     className={`clearfix authorIssue clear ${direction}`}
   >
     <a
-      href={comment.html_url}
-      title={comment.login}
+      href={comment.user.html_url}
+      title={comment.user.login}
       className={`avatar-user ${direction}`}
     >
       <img
-        alt={comment.login}
-        src={comment.avatar_url}
+        alt={comment.user.login}
+        src={comment.user.avatar_url}
       />
     </a>
     <Markdown className={`comment ${direction}`} >

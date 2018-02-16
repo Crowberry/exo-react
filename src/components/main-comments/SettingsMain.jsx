@@ -26,7 +26,6 @@ const SettingsMain = ({
       filteredComments={filteredComments}
       filteredUsers={filteredUsers}
       users={users}
-      // dataGraph={dataGraph}
     />
   </Fragment>
 );
@@ -37,12 +36,7 @@ SettingsMain.propTypes = {
   onFilteredUsersChange: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   users: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filteredComments: PropTypes.arrayOf(PropTypes.shape({
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    html_url: PropTypes.string,
-    id: PropTypes.number,
-  })).isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 

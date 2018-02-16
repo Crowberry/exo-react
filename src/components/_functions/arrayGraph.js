@@ -17,7 +17,7 @@ function arrayGraph(array, users, userFiltered) {
     }
 
     filteredComments.forEach((comment) => {
-      const { login } = comment;
+      const { login } = comment.user;
       const { body } = comment;
 
       if (user === login) {

@@ -33,12 +33,7 @@ const MainComments = ({
 MainComments.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
-  filteredComments: PropTypes.arrayOf(PropTypes.shape({
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    html_url: PropTypes.string,
-    id: PropTypes.number,
-  })).isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 

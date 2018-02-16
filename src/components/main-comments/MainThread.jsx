@@ -12,10 +12,10 @@ const MainThread = ({
           filteredComments.map(comment =>
             (
               <Comment
-                key={comment.idComment}
+                key={comment.id}
                 comment={comment}
                 direction={
-                  comment.id === issue.user.id ?
+                  comment.user.id === issue.user.id ?
                     'pull-left'
                   :
                     'pull-right'
@@ -29,12 +29,7 @@ const MainThread = ({
 MainThread.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
-  filteredComments: PropTypes.arrayOf(PropTypes.shape({
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    html_url: PropTypes.string,
-    id: PropTypes.number,
-  })).isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MainThread;

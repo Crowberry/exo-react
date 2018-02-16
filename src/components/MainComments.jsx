@@ -8,7 +8,7 @@ import arrayGraph from './_functions/arrayGraph';
 
 class MainComments extends React.Component {
   state = {
-    filteredUsers: ['xhallix'],
+    filteredUsers: [],
   }
 
   onFilteredUsersChange = (changedUsers) => {

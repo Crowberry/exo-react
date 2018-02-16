@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import string from 'string';
 
 export default class UrlInput extends React.Component {
   static propTypes = {
     getNewUrl: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
   }
   state = {
     urlGit: '',
@@ -27,10 +27,12 @@ export default class UrlInput extends React.Component {
   render() {
     const { urlGit } = this.state;
 
+    const isGitHub = string(urlGit).contains('github.com') && string(urlGit).contains('issues');
+
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <p><label htmlFor="urlInput">Changer URL issue github</label></p>
+        <p className="bold"><label htmlFor="urlInput">Changer URL issue github</label></p>
         <p>
           <input
             type="text"
@@ -42,7 +44,7 @@ export default class UrlInput extends React.Component {
           <button
             type="submit"
             className="btn btn-principal"
-            disabled={Boolean(this.props.isLoading)}
+            disabled={Boolean(!isGitHub)}
           >
             Rechercher
           </button>

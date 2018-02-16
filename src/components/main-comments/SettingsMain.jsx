@@ -18,7 +18,6 @@ const SettingsMain = ({
     />,
     <Graph
       key="Graph"
-      isLoading={isLoading}
       dataGraph={dataGraph}
     />,
   ]

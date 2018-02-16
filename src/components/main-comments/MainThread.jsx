@@ -9,21 +9,21 @@ const MainThread = ({
     {isLoading ?
       <p className="txt-center">Chargement des commentaires...</p>
           :
-          filteredComments.map((comment, i) =>
-            (comment.id === issue.user.id ?
+           filteredComments.map(comment =>
+            (comment.user.id === issue.user.id ?
               (
                 <div
-                  key={i}
+                  key={comment.id}
                   className="clearfix authorIssue pull-left clear"
                 >
                   <a
-                    href={comment.html_url}
-                    title={comment.login}
+                    href={comment.user.html_url}
+                    title={comment.user.login}
                     className="avatar-user pull-left"
                   >
                     <img
-                      alt={comment.login}
-                      src={comment.avatar_url}
+                      alt={comment.user.login}
+                      src={comment.user.avatar_url}
                     />
                   </a>
                   <Markdown className="pull-left comment">
@@ -33,17 +33,17 @@ const MainThread = ({
               )
             : (
               <div
-                key={i}
+                key={comment.id}
                 className="clearfix commentsOther pull-right clear"
               >
                 <a
-                  href={comment.html_url}
-                  title={comment.login}
+                  href={comment.user.html_url}
+                  title={comment.user.login}
                   className="avatar-user pull-right"
                 >
                   <img
-                    alt={comment.login}
-                    src={comment.avatar_url}
+                    alt={comment.user.login}
+                    src={comment.user.avatar_url}
                   />
                 </a>
                 <Markdown className="pull-right comment">
@@ -59,6 +59,7 @@ const MainThread = ({
 MainThread.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MainThread;

@@ -1,7 +1,10 @@
+const token = process.env.REACT_APP_TOKEN;
+console.log(process.env);
+
 function callApi(apiUrl) {
   return fetch(apiUrl, {
     method: 'get',
-    headers: { Authorization: 'bearer ce3e455dd3acb7960f7e48713d2cacfbe97cc697' },
+    headers: { Authorization: `bearer ${token}` },
   })
     .then(response => response.json());
 }

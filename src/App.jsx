@@ -1,10 +1,40 @@
 import React from 'react';
+import styled from 'styled-components';
 import HeaderIssue from './components/HeaderIssue';
 import MainComments from './components/MainComments';
 import SettingsMain from './components/main-comments/SettingsMain';
 import fetchApiURl from './components/_functions/callApi';
 import filterComments from './components/_functions/filterComments';
 import sortLoginUser from './components/_functions/sortLoginUser';
+// import cssVar from './_abstract/cssVar';
+
+const Main = styled.section`
+  background: #fafafa;
+
+  > div {
+    min-height: calc(100vh - 80px);
+  }
+
+  .settings-panel {
+    width: calc(50% - 160px);
+  }
+
+  .content-comments {
+    width: calc(50% + 160px);
+    background: #f0f3f5;
+    border-left: 1px solid rgb(209, 220, 228);
+    margin: 0;
+  }
+
+  .container-thread, .container-settings {
+    max-width: 100%;
+  }
+
+  .container-thread {
+    padding: 30px;
+    width: 640px;
+  }
+`;
 
 class App extends React.Component {
   state = {
@@ -92,19 +122,17 @@ class App extends React.Component {
       <div className="container-app">
         <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
 
-        <section className="main clearfix">
+        <Main className="main clearfix">
           <div className="settings-panel pull-left">
-            <div className="container-settings">
-              <SettingsMain
-                getNewUrl={this.getNewUrl}
-                isLoading={isLoading}
-                users={users}
-                filteredUsers={filteredUsers}
-                onFilteredUsersChange={this.onFilteredUsersChange}
-                issue={issue}
-                filteredComments={filteredComments}
-              />
-            </div>
+            <SettingsMain
+              getNewUrl={this.getNewUrl}
+              isLoading={isLoading}
+              users={users}
+              filteredUsers={filteredUsers}
+              onFilteredUsersChange={this.onFilteredUsersChange}
+              issue={issue}
+              filteredComments={filteredComments}
+            />
           </div>
 
           <div className="content-comments pull-left">
@@ -121,7 +149,7 @@ class App extends React.Component {
               />
             </div>
           </div>
-        </section>
+        </Main>
       </div>
 
 

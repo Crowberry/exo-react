@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import string from 'string';
+import Button from '../../blocks/Button';
 
 export default class UrlInput extends React.Component {
   static propTypes = {
@@ -40,15 +41,14 @@ export default class UrlInput extends React.Component {
             value={urlGit}
           />
         </p>
-        <p>
-          <button
-            type="submit"
-            className="btn btn-principal"
-            disabled={Boolean(!isGitHub)}
-          >
+        <Button
+          primary
+          type="submit"
+          className="btn btn-principal"
+          disabled={Boolean(!isGitHub)}
+        >
             Rechercher
-          </button>
-        </p>
+        </Button>
       </form>
     );
   }

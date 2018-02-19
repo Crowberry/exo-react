@@ -12,17 +12,15 @@ const MainComments = ({ issue, isLoading, filteredComments }) =>
         <TitleComments issue={issue} isLoading={isLoading} />
       </div>
       <div className="list-comments clearfix">
-        <div className="list-comments">
-          {filteredComments.map(comment => (
-            <Comment
-              key={comment.id}
-              comment={comment}
-              fromAuthor={
-                comment.user.id === issue.user.id
-              }
-            />
+        {filteredComments.map(comment => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            fromAuthor={
+              comment.user.id === issue.user.id
+            }
+          />
           ))}
-        </div>
       </div>
     </Fragment>
   ));

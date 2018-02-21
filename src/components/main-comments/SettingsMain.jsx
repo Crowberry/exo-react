@@ -1,14 +1,32 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import UrlInput from './blocks/UrlInput';
 import Graph from './blocks/Graph';
 import UserFilter from './blocks/UserFilter';
+
+const WrapSettings = styled.div`
+  padding: 30px;
+  width: 320px;
+  float: right;
+
+  form {
+    label {
+      display: block;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 5px;
+    }
+  }
+`;
 
 const SettingsMain = ({
   getNewUrl, isLoading, users, filteredUsers, filteredComments, issue, onFilteredUsersChange,
 }) => (
 
-  <Fragment>
+  <WrapSettings>
     <UrlInput
       key="UrlInput"
       getNewUrl={getNewUrl}
@@ -27,7 +45,7 @@ const SettingsMain = ({
       filteredUsers={filteredUsers}
       users={users}
     />
-  </Fragment>
+  </WrapSettings>
 );
 
 SettingsMain.propTypes = {

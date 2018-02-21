@@ -1,8 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Chart } from 'react-google-charts';
 import Rainbow from 'rainbowvis.js';
 import arrayGraph from '../../_functions/arrayGraph';
+
+const WrapGraph = styled.div`
+  margin-top: 30px;
+
+  .google-visualization-tooltip {
+    pointer-events: none;
+  }
+
+  ul {
+    li {
+      margin-bottom: 5px;
+
+      :first-child {
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      span {
+        :first-child {
+          width: calc(100% - 100px);
+          word-break: break-all;
+          padding-left: 5px;
+        }
+      }
+
+      .percent {
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+  }
+`;
+
+const ColorBox = styled.i`
+  display: inline-block;
+  width: 30px;
+  height: 10px;
+  background: red;
+  margin-right: 5px;
+  border-radius: 3px;
+`;
 
 const Graph = ({
   issue,
@@ -36,7 +79,7 @@ const Graph = ({
   dataGraph.unshift(['Utilisateurs', 'nombre de mots']);
 
   return (
-    <div className="container-graph">
+    <WrapGraph className="container-graph">
       <p className="bold">Qui est le plus bavard ?</p>
       <Chart
         chartTitle="DonutChart"
@@ -66,7 +109,7 @@ const Graph = ({
               <li className="clearfix" key={user[0]}>
                 <span className="pull-left">
                   {i > 0 ?
-                    <i className="color-box" style={{ background: colors[i - 1] }} />
+                    <ColorBox className="color-box" style={{ background: colors[i - 1] }} />
                   : null
                   }
                   {user[0]}
@@ -82,7 +125,7 @@ const Graph = ({
           })
         }
       </ul>
-    </div>
+    </WrapGraph>
   );
 };
 

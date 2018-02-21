@@ -2,6 +2,7 @@ import { compose, withState, withProps, lifecycle } from 'recompose';
 import fetchApiURl from '../components/_functions/callApi';
 import filterComments from '../components/_functions/filterComments';
 import sortLoginUser from '../components/_functions/sortLoginUser';
+import App from './App';
 
 function componentWillMount() {
   fetchApiURl(this.props.urlApi)
@@ -27,4 +28,4 @@ const enhance = compose(
   }),
 );
 
-export default enhance;
+export default enhance(App);

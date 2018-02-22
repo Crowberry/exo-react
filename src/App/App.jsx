@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import HeaderIssue from '../components/HeaderIssue';
 import MainComments from '../components/MainComments';
 import SettingsMain from '../components/main-comments/SettingsMain';
-// import cssVar from './_abstract/cssVar';
 
 const Main = styled.section`
   background: #fafafa;

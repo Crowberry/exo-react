@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import HeaderIssue from '../components/HeaderIssue';
 import MainComments from '../components/MainComments';
@@ -39,19 +40,22 @@ const App = ({
   filteredComments,
   filteredUsers,
   users,
+  getNewUrl,
+  onFilteredUsersChange,
 }) => (
   <div className="container-app">
-    <HeaderIssue key="head" issue={data.issue} isLoading={isLoading} />
+
+    <HeaderIssue key="head" issue={data.issue ? data.issue : {}} isLoading={isLoading} />
 
     <Main className="main clearfix">
       <div className="settings-panel pull-left">
         <SettingsMain
-          getNewUrl={this.getNewUrl}
+          getNewUrl={getNewUrl}
           isLoading={isLoading}
           users={users}
           filteredUsers={filteredUsers}
-          onFilteredUsersChange={this.onFilteredUsersChange}
-          issue={data.issue}
+          onFilteredUsersChange={onFilteredUsersChange}
+          issue={data.issue ? data.issue : {}}
           filteredComments={filteredComments}
         />
       </div>
@@ -60,12 +64,12 @@ const App = ({
         <div className="container-thread">
           <MainComments
             key="body"
-            issue={data.issue}
-            getNewUrl={this.getNewUrl}
+            issue={data.issue ? data.issue : {}}
+            getNewUrl={getNewUrl}
             isLoading={isLoading}
             filteredComments={filteredComments}
             filteredUsers={filteredUsers}
-            onFilteredUsersChange={this.onFilteredUsersChange}
+            onFilteredUsersChange={onFilteredUsersChange}
             users={users}
           />
         </div>
@@ -73,6 +77,16 @@ const App = ({
     </Main>
   </div>
 );
+
+App.propTypes = {
+  data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  isLoading: PropTypes.bool.isRequired,
+  filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  users: PropTypes.arrayOf(PropTypes.string).isRequired,
+  getNewUrl: PropTypes.func.isRequired,
+  onFilteredUsersChange: PropTypes.func.isRequired,
+};
 
 export default App;
 

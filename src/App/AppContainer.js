@@ -1,8 +1,20 @@
-import { compose, withState, withProps, lifecycle } from 'recompose';
+import {
+  compose,
+  withState,
+  withProps,
+  lifecycle,
+  withHandlers,
+  onlyUpdateForKeys,
+} from 'recompose';
 import fetchApiURl from '../components/_functions/callApi';
 import filterComments from '../components/_functions/filterComments';
 import sortLoginUser from '../components/_functions/sortLoginUser';
 import App from './App';
+
+
+const getNewUrl = ({ setUrlApi }) => (dataFromUrlInput) => {
+  setUrlApi(dataFromUrlInput);
+};
 
 function componentWillMount() {
   fetchApiURl(this.props.urlApi)
@@ -12,7 +24,31 @@ function componentWillMount() {
     });
 }
 
+function componentWillUpdate(nextProps) {
+  if (this.props.urlApi !== nextProps.urlApi) {
+    this.props.setIsLoading(true);
+    fetchApiURl(nextProps.urlApi)
+      .then((response) => {
+        this.props.setData(response);
+        this.props.setIsLoading(false);
+      });
+  }
+}
+
+const onFilteredUsersChange = ({ filteredUsers, setFilteredUsers }) => (changedUsers) => {
+  // case user add in filteredUser
+  // check if user isn't already in filteredUser
+  if (!filteredUsers.includes(changedUsers)) {
+    setFilteredUsers([...filteredUsers, changedUsers]);
+  } else {
+    // case user remove in filteredUser
+    // Check if user is in filteredUser
+    setFilteredUsers(filteredUsers.filter(item => item !== changedUsers));
+  }
+};
+
 const enhance = compose(
+  onlyUpdateForKeys(['urlApi']),
   withState('urlApi', 'setUrlApi', 'https://api.github.com/repos/nodejs/node/issues/6867'),
   withState('data', 'setData', {}),
   withState('isLoading', 'setIsLoading', true),
@@ -21,10 +57,12 @@ const enhance = compose(
     users: props.isLoading ?
       [] : sortLoginUser(props.data.comments, props.data.issue),
     filteredComments: props.isLoading ?
-      {} : filterComments(props.data.comments, props.filteredUsers),
+      [] : filterComments(props.data.comments, props.filteredUsers),
   })),
+  withHandlers({ getNewUrl, onFilteredUsersChange }),
   lifecycle({
     componentWillMount,
+    componentWillUpdate,
   }),
 );
 

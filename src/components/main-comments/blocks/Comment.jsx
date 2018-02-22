@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../../Markdown';
 import { Avatar } from '../../blocks/Avatar';
-import CommentText from './CommentText';
+import CommentStyle from './CommentStyle';
 
 // const myCOmp = () => <div className="btn-red">Click</div>;
 
@@ -25,9 +25,9 @@ const Comment = ({ comment, fromAuthor }) => (
     >
       <img alt={comment.user.login} src={comment.user.avatar_url} />
     </Avatar>
-    <CommentText isRight={Boolean(!fromAuthor)} className="comment">
+    <CommentStyle isRight={Boolean(!fromAuthor)} className="comment">
       <Markdown>{comment.body}</Markdown>
-    </CommentText>
+    </CommentStyle>
   </div>
 );
 

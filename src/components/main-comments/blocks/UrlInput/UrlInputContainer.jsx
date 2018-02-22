@@ -1,4 +1,4 @@
-import { withState, setPropTypes, compose, withHandlers, withProps, onlyUpdateForPropTypes } from 'recompose';
+import { withState, setPropTypes, compose, withHandlers, onlyUpdateForPropTypes } from 'recompose';
 import PropTypes from 'prop-types';
 import string from 'string';
 import UrlInput from './UrlInput';
@@ -14,12 +14,15 @@ const handleChange = ({ setUrlGit, seturlGitValid, urlGit }) => ({ target: { val
     (seturlGitValid(false));
   }
 };
-// const handleSubmit = ({ urlGit }) => (event) => {
-//   event.preventDefault();
-//   const url = urlGit.replace(/github.com/, 'api.github.com/repos');
-//   console.log(`url   ${url}`);
-//   getNewUrl(url);
-// };
+const handleSubmit = ({
+  urlGit, getNewUrl, setUrlGit, seturlGitValid,
+}) => (event) => {
+  event.preventDefault();
+  const url = urlGit.replace(/github.com/, 'api.github.com/repos');
+  getNewUrl(url);
+  setUrlGit('');
+  seturlGitValid(false);
+};
 
 const enhance = compose(
   onlyUpdateForPropTypes,
@@ -31,13 +34,9 @@ const enhance = compose(
   withHandlers({
     handleChange,
   }),
-  withProps(({ getNewUrl }) => ({
-    handleSubmit: ({ urlGit }) => (event) => {
-      event.preventDefault();
-      const url = urlGit.replace(/github.com/, 'api.github.com/repos');
-      getNewUrl(url);
-    },
-  })),
+  withHandlers({
+    handleSubmit,
+  }),
 );
 
 export default enhance(UrlInput);

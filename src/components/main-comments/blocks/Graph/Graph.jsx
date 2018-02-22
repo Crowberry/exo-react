@@ -1,83 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Chart } from 'react-google-charts';
-import Rainbow from 'rainbowvis.js';
-// import arrayGraph from '../../../../functions/arrayGraph';
+import { WrapGraph, ColorBox } from './GraphStyled';
 
-const WrapGraph = styled.div`
-  margin-top: 30px;
-
-  .google-visualization-tooltip {
-    pointer-events: none;
-  }
-
-  ul {
-    li {
-      margin-bottom: 5px;
-
-      :first-child {
-        margin-bottom: 10px;
-        font-size: 12px;
-        font-weight: 700;
-      }
-
-      span {
-        :first-child {
-          width: calc(100% - 100px);
-          word-break: break-all;
-          padding-left: 5px;
-        }
-      }
-
-      .percent {
-        font-weight: 400;
-        font-size: 12px;
-      }
-    }
-  }
-`;
-
-const ColorBox = styled.i`
-  display: inline-block;
-  width: 30px;
-  height: 10px;
-  background: red;
-  margin-right: 5px;
-  border-radius: 3px;
-`;
-
-const Graph = ({
-  dataGraph,
-}) => {
-// const dataGraph = arrayGraph(
-//   { issue, filteredComments },
-//   users,
-//   filteredUsers,
-// );
-  const nbUsers = dataGraph.length;
-  let colors = [];
-  let totalWords = 0;
-
-  const rainbow = new Rainbow();
-  rainbow.setSpectrum('#ef7f47', '#b7e9ff');
-
-  // declare value colors
-  dataGraph.forEach((data, i) => {
-    if (nbUsers > 1) {
-      const coefRainbow = (i * 100) / (nbUsers - 1);
-      colors.push(`#${rainbow.colourAt(coefRainbow)}`);
-    } else {
-      colors = ['#ef7f47'];
-    }
-    totalWords += data[1];
-  });
-
-  dataGraph.unshift(['Utilisateurs', 'nombre de mots']);
-
-  return (
-    <WrapGraph className="container-graph">
-      <p className="bold">Qui est le plus bavard ?</p>
+const Graph = ({ dataGraph, colors, totalWords }) => (
+  <WrapGraph className="container-graph">
+    <p className="bold">Qui est le plus bavard ?</p>
+    {dataGraph.length > 1 ?
       <Chart
         chartTitle="DonutChart"
         chartType="PieChart"
@@ -98,9 +27,11 @@ const Graph = ({
         width="100%"
         height="220px"
       />
-      <ul>
-        {
-        dataGraph.map((user, i) => {
+      :
+      null
+    }
+    <ul>
+      {dataGraph.map((user, i) => {
           const percent = Math.round(((100 * user[1]) / totalWords) * 10) / 10;
           return (
             <li className="clearfix" key={user[0]}>
@@ -121,14 +52,13 @@ const Graph = ({
           );
         })
       }
-      </ul>
-    </WrapGraph>
-  );
-};
-
-
+    </ul>
+  </WrapGraph>
+);
 Graph.propTypes = {
-  dataGraph: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataGraph: PropTypes.arrayOf(PropTypes.array).isRequired,
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  totalWords: PropTypes.number.isRequired,
 };
 
 export default Graph;

@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import UrlInput from './blocks/UrlInput/';
 import Graph from './blocks/Graph';
 import UserFilter from './blocks/UserFilter/';
+=======
+import UrlInput from './blocks/UrlInput';
+import Graph from './blocks/Graph/';
+import UserFilter from './blocks/UserFilter';
+>>>>>>> master
 
 const WrapSettings = styled.div`
   padding: 30px;

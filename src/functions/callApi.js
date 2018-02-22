@@ -1,5 +1,4 @@
 const token = process.env.REACT_APP_TOKEN;
-console.log(process.env);
 
 function callApi(apiUrl) {
   return fetch(apiUrl, {

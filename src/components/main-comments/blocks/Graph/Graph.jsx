@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Chart } from 'react-google-charts';
 import Rainbow from 'rainbowvis.js';
-import arrayGraph from '../../_functions/arrayGraph';
+// import arrayGraph from '../../../../functions/arrayGraph';
 
 const WrapGraph = styled.div`
   margin-top: 30px;
@@ -48,16 +48,13 @@ const ColorBox = styled.i`
 `;
 
 const Graph = ({
-  issue,
-  filteredComments,
-  users,
-  filteredUsers,
+  dataGraph,
 }) => {
-  const dataGraph = arrayGraph(
-    { issue, filteredComments },
-    users,
-    filteredUsers,
-  );
+// const dataGraph = arrayGraph(
+//   { issue, filteredComments },
+//   users,
+//   filteredUsers,
+// );
   const nbUsers = dataGraph.length;
   let colors = [];
   let totalWords = 0;
@@ -86,44 +83,44 @@ const Graph = ({
         chartType="PieChart"
         data={dataGraph}
         options={{
-          legend: 'none',
-          tooltip: { isHtml: true },
-          backgroundColor: '#fafafa',
-          chartArea: {
-            left: 0, top: 10, width: '100%', height: '90%',
-          },
-          colors,
-          fontSize: 14,
-          fontName: 'Roboto, sans-serif',
-          pieSliceTextStyle: { color: 'white', fontSize: 16, fontWeight: 700 },
-        }}
+        legend: 'none',
+        tooltip: { isHtml: true },
+        backgroundColor: '#fafafa',
+        chartArea: {
+          left: 0, top: 10, width: '100%', height: '90%',
+        },
+        colors,
+        fontSize: 14,
+        fontName: 'Roboto, sans-serif',
+        pieSliceTextStyle: { color: 'white', fontSize: 16, fontWeight: 700 },
+      }}
         graph_id="ScatterChart"
         width="100%"
         height="220px"
       />
       <ul>
         {
-          dataGraph.map((user, i) => {
-            const percent = Math.round(((100 * user[1]) / totalWords) * 10) / 10;
-            return (
-              <li className="clearfix" key={user[0]}>
-                <span className="pull-left">
-                  {i > 0 ?
-                    <ColorBox className="color-box" style={{ background: colors[i - 1] }} />
+        dataGraph.map((user, i) => {
+          const percent = Math.round(((100 * user[1]) / totalWords) * 10) / 10;
+          return (
+            <li className="clearfix" key={user[0]}>
+              <span className="pull-left">
+                {i > 0 ?
+                  <ColorBox className="color-box" style={{ background: colors[i - 1] }} />
+                : null
+                }
+                {user[0]}
+              </span>
+              <span className="pull-left">
+                {user[1]} {i > 0 ?
+                  <b className="percent">({percent}%)</b>
                   : null
-                  }
-                  {user[0]}
-                </span>
-                <span className="pull-left">
-                  {user[1]} {i > 0 ?
-                    <b className="percent">({percent}%)</b>
-                    : null
-                  }
-                </span>
-              </li>
-            );
-          })
-        }
+                }
+              </span>
+            </li>
+          );
+        })
+      }
       </ul>
     </WrapGraph>
   );
@@ -131,15 +128,7 @@ const Graph = ({
 
 
 Graph.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.string).isRequired,
-  filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  filteredComments: PropTypes.arrayOf(PropTypes.shape({
-    login: PropTypes.string,
-    avatar_url: PropTypes.string,
-    html_url: PropTypes.string,
-    id: PropTypes.number,
-  })).isRequired,
+  dataGraph: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Graph;

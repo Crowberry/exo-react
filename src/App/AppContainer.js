@@ -6,9 +6,9 @@ import {
   withHandlers,
   onlyUpdateForKeys,
 } from 'recompose';
-import fetchApiURl from '../components/_functions/callApi';
-import filterComments from '../components/_functions/filterComments';
-import sortLoginUser from '../components/_functions/sortLoginUser';
+import fetchApiURl from '../functions/callApi';
+import filterComments from '../functions/filterComments';
+import sortLoginUser from '../functions/sortLoginUser';
 import App from './App';
 
 

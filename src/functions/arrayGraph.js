@@ -2,8 +2,7 @@ import count from 'word-count';
 
 // function reçoit tous les commentaires ainsi que le body issue
 // ressort un tableau avec pour chaque user unique tous ses commentaires (un seul string ?)
-function arrayGraph(array, users, userFiltered) {
-  const { issue, filteredComments } = array;
+function arrayGraph(issue, filteredComments, users, userFiltered) {
   const arrayChecked = users.filter(word => !userFiltered.includes(word));
   const newArray = [];
 

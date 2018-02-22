@@ -4,7 +4,7 @@ import UserFilterStyle from './UserFilterStyle';
 
 const UserFilter = ({ users, filteredUsers, handleInputChange }) => (
   <div>
-    <UserFilterStyle className="userFilter">
+    <UserFilterStyle>
       <p className="bold">Masquer un participant</p>
 
       {users.map(user =>

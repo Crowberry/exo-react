@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Markdown from '../Markdown';
 import { Avatar, AvatarPH } from '../blocks/Avatar';
-import CommentText from './blocks/CommentText';
+import CommentStyle from './blocks/CommentStyle';
 
 const Author = styled.div`
   margin-bottom: 10px;
@@ -35,7 +35,7 @@ const Author = styled.div`
 
 const TitleComments = ({ issue, isLoading }) => (
 
-  <CommentText isIssue="true" className="clearfix">
+  <CommentStyle isIssue="true" className="clearfix">
     {isLoading ?
       <AvatarPH className="placeholder ph-avatar" />
       :
@@ -55,7 +55,7 @@ const TitleComments = ({ issue, isLoading }) => (
       </Fragment>
     }
 
-  </CommentText>
+  </CommentStyle>
 );
 
 // const shapeUser = PropTypes.shape({

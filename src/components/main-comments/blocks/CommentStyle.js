@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const CommentText = styled.div`
+const CommentStyle = styled.div`
   min-height: 50px;
   border-radius: 10px;
   background: #f5fcff;
@@ -40,5 +40,5 @@ const CommentText = styled.div`
   }
 `;
 
-export default CommentText;
+export default CommentStyle;
 

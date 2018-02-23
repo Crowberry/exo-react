@@ -1,7 +1,7 @@
 import {
   compose,
-  withHandlers,
   withState,
+  withHandlers,
 } from 'recompose';
 import AddComment from './AddComment';
 
@@ -11,7 +11,9 @@ const handleChange = ({ setNewComment }) => ({ target: { value } }) => {
   setNewComment(value);
 };
 
-const handleSubmit = ({ newComment, issue }) => (event) => {
+const handleSubmit = ({
+  newComment, setNewComment, issue, onAddNewComment,
+}) => (event) => {
   event.preventDefault();
   fetch(issue.comments_url, {
     method: 'POST',
@@ -20,7 +22,8 @@ const handleSubmit = ({ newComment, issue }) => (event) => {
   })
     .then(response => response.json())
     .then((data) => {
-      console.log(data);
+      onAddNewComment(data);
+      setNewComment('');
     });
 };
 

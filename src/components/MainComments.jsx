@@ -6,7 +6,7 @@ import Comment from './main-comments/blocks/Comment';
 import AddComment from './main-comments/blocks/AddComment/';
 
 const MainComments = ({
-  issue, isLoading, filteredComments,
+  issue, isLoading, filteredComments, onAddNewComment,
 }) =>
   (isLoading ? (
     <p className="txt-center">Chargement des commentaires...</p>
@@ -26,7 +26,7 @@ const MainComments = ({
           />
           ))}
       </div>
-      <AddComment issue={issue} />
+      <AddComment issue={issue} onAddNewComment={onAddNewComment} />
     </Fragment>
   ));
 
@@ -34,6 +34,7 @@ MainComments.propTypes = {
   issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
   filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddNewComment: PropTypes.func.isRequired,
 };
 
 

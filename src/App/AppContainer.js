@@ -47,6 +47,14 @@ const onFilteredUsersChange = ({ filteredUsers, setFilteredUsers }) => (changedU
   }
 };
 
+const onAddNewComment = ({ urlApi, setData, setIsLoading }) => (e) => {
+  fetchApiUrl(urlApi)
+    .then((response) => {
+      setData(response);
+      setIsLoading(false);
+    });
+};
+
 
 const enhance = compose(
   onlyUpdateForKeys(['urlApi']),
@@ -60,7 +68,7 @@ const enhance = compose(
     filteredComments: props.isLoading ?
       [] : filterComments(props.data.comments, props.filteredUsers),
   })),
-  withHandlers({ getNewUrl, onFilteredUsersChange }),
+  withHandlers({ getNewUrl, onFilteredUsersChange, onAddNewComment }),
   lifecycle({
     componentWillMount,
     componentWillUpdate,

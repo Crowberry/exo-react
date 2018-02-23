@@ -14,7 +14,7 @@ const Button = styled.button`
   padding: 8px;
   font-weight: 700;
   cursor: pointer;
-  transition: color .2s ease-in, background-color .2s ease-in;
+  transition: color .15s ease-in, background-color .15s ease-in;
 
   ${props => props.primary && css`
       color: #fff;

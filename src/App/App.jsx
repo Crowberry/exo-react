@@ -41,6 +41,7 @@ const App = ({
   users,
   getNewUrl,
   onFilteredUsersChange,
+  onAddNewComment,
 }) => (
   <div className="container-app">
 
@@ -70,6 +71,7 @@ const App = ({
             filteredUsers={filteredUsers}
             onFilteredUsersChange={onFilteredUsersChange}
             users={users}
+            onAddNewComment={onAddNewComment}
           />
         </div>
       </div>
@@ -85,6 +87,7 @@ App.propTypes = {
   users: PropTypes.arrayOf(PropTypes.string).isRequired,
   getNewUrl: PropTypes.func.isRequired,
   onFilteredUsersChange: PropTypes.func.isRequired,
+  onAddNewComment: PropTypes.func.isRequired,
 };
 
 export default App;

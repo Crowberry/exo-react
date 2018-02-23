@@ -37,19 +37,4 @@ MainComments.propTypes = {
   onAddNewComment: PropTypes.func.isRequired,
 };
 
-
-// function componentWillUpdate(nextProps) {
-//   if (this.props.filteredComments !== nextProps.filteredComments) {
-//     this.props.setFilteredComments(nextProps.filteredComments);
-//   }
-// }
-
-// const enhance = compose(
-//   withState('filteredComments', 'setFilteredComments', this.props.filteredComments),
-//   lifecycle({
-//     componentWillUpdate,
-//   }),
-// );
-
-
 export default MainComments;

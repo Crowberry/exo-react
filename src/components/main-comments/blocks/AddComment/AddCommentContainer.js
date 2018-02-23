@@ -3,24 +3,25 @@ import {
   withState,
   withHandlers,
 } from 'recompose';
+import { callApi } from '../../../../functions/callApi';
 import AddComment from './AddComment';
 
-const token = process.env.REACT_APP_TOKEN;
+// const token = process.env.REACT_APP_TOKEN;
 
 const handleChange = ({ setNewComment }) => ({ target: { value } }) => {
   setNewComment(value);
 };
 
 const handleSubmit = ({
-  newComment, setNewComment, issue, onAddNewComment,
+  newComment,
+  setNewComment,
+  issue,
+  onAddNewComment,
 }) => (event) => {
   event.preventDefault();
-  fetch(issue.comments_url, {
-    method: 'POST',
-    headers: { Authorization: `bearer ${token}` },
-    body: JSON.stringify({ body: newComment }),
-  })
-    .then(response => response.json())
+  const body = JSON.stringify({ body: newComment });
+
+  callApi(issue.comments_url, 'post', body)
     .then(() => {
       onAddNewComment();
       setNewComment('');

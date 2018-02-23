@@ -21,8 +21,8 @@ const handleSubmit = ({
     body: JSON.stringify({ body: newComment }),
   })
     .then(response => response.json())
-    .then((data) => {
-      onAddNewComment(data);
+    .then(() => {
+      onAddNewComment();
       setNewComment('');
     });
 };

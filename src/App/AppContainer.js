@@ -47,11 +47,10 @@ const onFilteredUsersChange = ({ filteredUsers, setFilteredUsers }) => (changedU
   }
 };
 
-const onAddNewComment = ({ urlApi, setData, setIsLoading }) => (e) => {
+const onAddNewComment = ({ urlApi, setData }) => () => {
   fetchApiUrl(urlApi)
     .then((response) => {
       setData(response);
-      setIsLoading(false);
     });
 };
 

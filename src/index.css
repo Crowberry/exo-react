@@ -51,16 +51,18 @@ table {
 
 html {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: #6c7680;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 body {
   margin: 0;
   padding: 0;
-  color: #6c7680;
-  font-family: 'Roboto', sans-serif;
 }
 
 p {

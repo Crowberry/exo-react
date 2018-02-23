@@ -8,10 +8,10 @@ function callApi(apiUrl) {
     .then(response => response.json());
 }
 
-function fetchApiURl(url) {
+function fetchApiUrl(url) {
   return callApi(url)
     .then(issue => callApi(issue.comments_url)
       .then(comments => ({ issue, comments })));
 }
 
-export default fetchApiURl;
+export default fetchApiUrl;

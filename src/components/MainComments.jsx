@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
+// import { compose, withState, lifecycle } from 'recompose';
 import PropTypes from 'prop-types';
 import TitleComments from './main-comments/TitleComments';
 import Comment from './main-comments/blocks/Comment';
+import AddComment from './main-comments/blocks/AddComment/';
 
-const MainComments = ({ issue, isLoading, filteredComments }) =>
+const MainComments = ({
+  issue, isLoading, filteredComments,
+}) =>
   (isLoading ? (
     <p className="txt-center">Chargement des commentaires...</p>
   ) : (
@@ -22,6 +26,7 @@ const MainComments = ({ issue, isLoading, filteredComments }) =>
           />
           ))}
       </div>
+      <AddComment issue={issue} />
     </Fragment>
   ));
 
@@ -30,5 +35,20 @@ MainComments.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+
+// function componentWillUpdate(nextProps) {
+//   if (this.props.filteredComments !== nextProps.filteredComments) {
+//     this.props.setFilteredComments(nextProps.filteredComments);
+//   }
+// }
+
+// const enhance = compose(
+//   withState('filteredComments', 'setFilteredComments', this.props.filteredComments),
+//   lifecycle({
+//     componentWillUpdate,
+//   }),
+// );
+
 
 export default MainComments;

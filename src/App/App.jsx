@@ -34,17 +34,18 @@ const Main = styled.section`
 `;
 
 const App = ({
-  data,
+  issue,
   isLoading,
   filteredComments,
   filteredUsers,
   users,
   getNewUrl,
   onFilteredUsersChange,
+  onAddNewComment,
 }) => (
   <div className="container-app">
 
-    <HeaderIssue key="head" issue={data.issue ? data.issue : {}} isLoading={isLoading} />
+    <HeaderIssue key="head" issue={issue || {}} isLoading={isLoading} />
 
     <Main className="main clearfix">
       <div className="settings-panel pull-left">
@@ -54,7 +55,7 @@ const App = ({
           users={users}
           filteredUsers={filteredUsers}
           onFilteredUsersChange={onFilteredUsersChange}
-          issue={data.issue ? data.issue : {}}
+          issue={issue || {}}
           filteredComments={filteredComments}
         />
       </div>
@@ -63,13 +64,14 @@ const App = ({
         <div className="container-thread">
           <MainComments
             key="body"
-            issue={data.issue ? data.issue : {}}
+            issue={issue || {}}
             getNewUrl={getNewUrl}
             isLoading={isLoading}
             filteredComments={filteredComments}
             filteredUsers={filteredUsers}
             onFilteredUsersChange={onFilteredUsersChange}
             users={users}
+            onAddNewComment={onAddNewComment}
           />
         </div>
       </div>
@@ -78,136 +80,14 @@ const App = ({
 );
 
 App.propTypes = {
-  data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  issue: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   isLoading: PropTypes.bool.isRequired,
   filteredComments: PropTypes.arrayOf(PropTypes.object).isRequired,
   filteredUsers: PropTypes.arrayOf(PropTypes.string).isRequired,
   users: PropTypes.arrayOf(PropTypes.string).isRequired,
   getNewUrl: PropTypes.func.isRequired,
   onFilteredUsersChange: PropTypes.func.isRequired,
+  onAddNewComment: PropTypes.func.isRequired,
 };
 
 export default App;
-
-
-// class App extends React.Component {
-//   state = {
-//     urlApi: 'https://api.github.com/repos/nodejs/node/issues/6867',
-//     issue: {},
-//     comments: [],
-//     isLoading: true,
-//     filteredComments: [],
-//     filteredUsers: [],
-//     users: [],
-//   };
-
-//   componentWillMount() {
-//     fetchApiURl(this.state.urlApi)
-//       .then((data) => {
-//         this.setState({
-//           issue: data.issue,
-//           comments: data.comments,
-//           isLoading: false,
-//           filteredComments: data.comments,
-//           users: sortLoginUser(data.comments, data.issue),
-//         });
-//       });
-//   }
-
-//   componentWillUpdate(nextProps, nextState) {
-//     if (this.state.urlApi !== nextState.urlApi) {
-//       fetchApiURl(nextState.urlApi)
-//         .then((data) => {
-//           this.setState({
-//             issue: data.issue,
-//             comments: data.comments,
-//             isLoading: false,
-//             filteredComments: data.comments,
-//             users: sortLoginUser(data.comments, data.issue),
-//           });
-//         });
-//     }
-//   }
-
-//   onFilteredUsersChange = (changedUsers) => {
-//     // case user add in filteredUser
-//     // check if user isn't already in filteredUser
-//     if (!this.state.filteredUsers.includes(changedUsers)) {
-//       this.setState(prevState => ({
-//         filteredUsers: [...prevState.filteredUsers, changedUsers],
-//         filteredComments: filterComments(prevState.filteredComments, [changedUsers]),
-//       }));
-//     } else if (this.state.filteredUsers.includes(changedUsers)) {
-//       // case user remove in filteredUser
-//       // Check if user is in filteredUser
-//       this.setState(prevState => ({
-//         filteredComments: filterComments(
-//           this.state.comments,
-//           prevState.filteredUsers.filter(item => item !== changedUsers),
-//         ),
-//         filteredUsers: prevState.filteredUsers.filter(item => item !== changedUsers),
-//       }));
-//     }
-//   }
-
-//   getNewUrl = (dataFromUrlInput) => {
-//     this.setState({ urlApi: dataFromUrlInput, isLoading: true });
-//   };
-
-//   fetchData(url) {
-//     fetchApiURl(url)
-//       .then((data) => {
-//         this.setState({
-//           issue: data.issue,
-//           comments: data.comments,
-//           isLoading: false,
-//           filteredComments: data.comments,
-//           users: sortLoginUser(data.comments, data.issue),
-//         });
-//       });
-//   }
-
-//   render() {
-//     const {
-//       issue, isLoading, filteredComments, filteredUsers, users,
-//     } = this.state;
-//     return (
-
-//       <div className="container-app">
-//         <HeaderIssue key="head" issue={issue} isLoading={isLoading} />
-
-//         <Main className="main clearfix">
-//           <div className="settings-panel pull-left">
-//             <SettingsMain
-//               getNewUrl={this.getNewUrl}
-//               isLoading={isLoading}
-//               users={users}
-//               filteredUsers={filteredUsers}
-//               onFilteredUsersChange={this.onFilteredUsersChange}
-//               issue={issue}
-//               filteredComments={filteredComments}
-//             />
-//           </div>
-
-//           <div className="content-comments pull-left">
-//             <div className="container-thread">
-//               <MainComments
-//                 key="body"
-//                 issue={issue}
-//                 getNewUrl={this.getNewUrl}
-//                 isLoading={isLoading}
-//                 filteredComments={filteredComments}
-//                 filteredUsers={filteredUsers}
-//                 onFilteredUsersChange={this.onFilteredUsersChange}
-//                 users={users}
-//               />
-//             </div>
-//           </div>
-//         </Main>
-//       </div>
-
-
-//     );
-//   }
-// }
-

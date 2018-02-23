@@ -14,8 +14,7 @@ const CommentStyle = styled.div`
     max-width: 100%;
   ` : css`
     margin-bottom: 30px;
-    width: calc(100% - 65px);
-    max-width: 560px;
+    max-width: calc(100% - 65px);
   `)}
 
   p {

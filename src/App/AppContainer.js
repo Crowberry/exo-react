@@ -6,7 +6,7 @@ import {
   withHandlers,
   onlyUpdateForKeys,
 } from 'recompose';
-import fetchApiURl from '../functions/callApi';
+import { fetchApiUrl, callApi } from '../functions/callApi';
 import filterComments from '../functions/filterComments';
 import sortLoginUser from '../functions/sortLoginUser';
 import App from './App';
@@ -17,9 +17,10 @@ const getNewUrl = ({ setUrlApi }) => (dataFromUrlInput) => {
 };
 
 function componentWillMount() {
-  fetchApiURl(this.props.urlApi)
+  fetchApiUrl(this.props.urlApi)
     .then((response) => {
-      this.props.setData(response);
+      this.props.setIssue(response.issue);
+      this.props.setComments(response.comments);
       this.props.setIsLoading(false);
     });
 }
@@ -27,9 +28,10 @@ function componentWillMount() {
 function componentWillUpdate(nextProps) {
   if (this.props.urlApi !== nextProps.urlApi) {
     this.props.setIsLoading(true);
-    fetchApiURl(nextProps.urlApi)
+    fetchApiUrl(nextProps.urlApi)
       .then((response) => {
-        this.props.setData(response);
+        this.props.setIssue(response.issue);
+        this.props.setComments(response.comments);
         this.props.setIsLoading(false);
       });
   }
@@ -47,19 +49,28 @@ const onFilteredUsersChange = ({ filteredUsers, setFilteredUsers }) => (changedU
   }
 };
 
+const onAddNewComment = ({ issue, setComments }) => () => {
+  callApi(issue.comments_url)
+    .then((response) => {
+      setComments(response);
+    });
+};
+
+
 const enhance = compose(
   onlyUpdateForKeys(['urlApi']),
-  withState('urlApi', 'setUrlApi', 'https://api.github.com/repos/nodejs/node/issues/6867'),
-  withState('data', 'setData', {}),
+  withState('urlApi', 'setUrlApi', 'https://api.github.com/repos/Crowberry/exo-react/issues/26'),
+  withState('issue', 'setIssue', {}),
+  withState('comments', 'setComments', {}),
   withState('isLoading', 'setIsLoading', true),
   withState('filteredUsers', 'setFilteredUsers', []),
   withProps(props => ({
     users: props.isLoading ?
-      [] : sortLoginUser(props.data.comments, props.data.issue),
+      [] : sortLoginUser(props.comments, props.issue),
     filteredComments: props.isLoading ?
-      [] : filterComments(props.data.comments, props.filteredUsers),
+      [] : filterComments(props.comments, props.filteredUsers),
   })),
-  withHandlers({ getNewUrl, onFilteredUsersChange }),
+  withHandlers({ getNewUrl, onFilteredUsersChange, onAddNewComment }),
   lifecycle({
     componentWillMount,
     componentWillUpdate,

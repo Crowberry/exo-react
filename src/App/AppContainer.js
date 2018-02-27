@@ -4,8 +4,8 @@ import {
   withProps,
   lifecycle,
   withHandlers,
-  onlyUpdateForKeys,
 } from 'recompose';
+import { connect } from 'react-redux';
 import { fetchApiUrl, callApi } from '../functions/callApi';
 import filterComments from '../functions/filterComments';
 import sortLoginUser from '../functions/sortLoginUser';
@@ -17,12 +17,10 @@ const getNewUrl = ({ setUrlApi }) => (dataFromUrlInput) => {
 };
 
 function componentWillMount() {
-  fetchApiUrl(this.props.urlApi)
-    .then((response) => {
-      this.props.setIssue(response.issue);
-      this.props.setComments(response.comments);
-      this.props.setIsLoading(false);
-    });
+  this.props.loadData(this.props.urlApi).then(() => {
+    console.log('toto');
+    this.props.setIsLoading(false);
+  });
 }
 
 function componentWillUpdate(nextProps) {
@@ -56,13 +54,43 @@ const onAddNewComment = ({ issue, setComments }) => () => {
     });
 };
 
+const mapStateToProps = state => ({
+  data: state.data,
+  issue: state.issue,
+  comments: state.comments,
+  urlApi: state.urlApi,
+  isLoading: true,
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadData: urlApi => fetchApiUrl(urlApi)
+    .then((data) => {
+      dispatch({
+        type: 'DATA_RECEIVED',
+        data,
+      });
+    }).then((data) => {
+      dispatch({
+        type: 'ISSUE_RECEIVED',
+        issue: data,
+      });
+      dispatch({
+        type: 'COMMENTS_RECEIVED',
+        comments: data,
+      });
+    }),
+});
+
+const withConnectApp = connect(mapStateToProps, mapDispatchToProps);
+
 
 const enhance = compose(
-  onlyUpdateForKeys(['urlApi']),
-  withState('urlApi', 'setUrlApi', 'https://api.github.com/repos/Crowberry/exo-react/issues/26'),
-  withState('issue', 'setIssue', {}),
-  withState('comments', 'setComments', {}),
+  withConnectApp,
   withState('isLoading', 'setIsLoading', true),
+  // withState('issue', 'setIssue', {}),
+  // withState('comments', 'setComments', {}),
+  // onlyUpdateForKeys(['urlApi']),
+  // withState('urlApi', 'setUrlApi', 'https://api.github.com/repos/Crowberry/exo-react/issues/26'),
   withState('filteredUsers', 'setFilteredUsers', []),
   withProps(props => ({
     users: props.isLoading ?

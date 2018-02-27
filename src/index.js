@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+import configureStore from './store/';
 
-// eslint-disable-next-line react/jsx-filename-extension
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  // eslint-disable-next-line react/jsx-filename-extension
+  <Provider store={configureStore()}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
